@@ -21,67 +21,68 @@ public:
         srand(time(NULL));
     }
 
-    ~Authorization()
-    { }
 
-	string autoLoginGeneration()
-	{
-        const int loginLength = 12;
-        char login[loginLength + 1];
-
-        for (int i = 0; i < loginLength; i++)
-        {
-            int random = rand() % 48;
-            if (random < 19)
-                login[i] = 'a' + random;
-            else
-                login[i] = 'A' + random - 19;
-        }
-
-        login[loginLength] = '\0';
-
-        return string(login);
-	}
-
-
-    string autoPasswordGeneration()
+    void autoGeneration() // для автогенерации логина с паролем
     {
-        const int passwordLength = 8;
-        char password[passwordLength + 1];
+        const int passwordLength = 8, loginLength = 12;
+        char autopassword[passwordLength + 1], autologin[loginLength + 1];
         for (int i = 0; i < passwordLength; i++)
         {
             int random = rand() % 62; // генерация случайного числа от 0 до 61, для определения символа, буква или цифра, какого реестра
             if (random < 26)
-                password[i] = 'a' + random; // случайная буква от 'a' до 'z'
+                autopassword[i] = 'a' + random; // случайная буква от 'a' до 'z'
             else if (random < 52)
-                password[i] = 'A' + random - 26; // случайная буква от 'A' до 'Z'
+                autopassword[i] = 'A' + random - 26; // случайная буква от 'A' до 'Z'
             else
-                password[i] = '0' + random - 52; // случайная цифра от '0' до '9'
+                autopassword[i] = '0' + random - 52; // случайная цифра от '0' до '9'
         }
-
-        password[passwordLength] = '\0';
-
-        return string(password);
-    }
-
-    string manualLoginGeneration()
-    {
-        const int loginLength = 12;
-        char login[loginLength + 1];
 
         for (int i = 0; i < loginLength; i++)
         {
             int random = rand() % 48;
             if (random < 19)
-                login[i] = 'a' + random;
+                autologin[i] = 'a' + random;
             else
-                login[i] = 'A' + random - 19;
+                autologin[i] = 'A' + random - 19;
         }
 
-        login[loginLength] = '\0';
+        autologin[loginLength] = '\0';
+        autopassword[passwordLength] = '\0';
 
-        return string(login);
+        saveLoginAndPassword(autologin, autopassword, "login_password.txt");
     }
+
+    void enterLoginAndPassword() // для ручного ввода данных
+    {
+        string login, password;
+
+        cout << "Введите логин (до 12 символов): ";
+        getline(cin, login);
+
+        while (login.length() > 12)
+        {
+            cout << "Логин должен быть не более 12 символов. Попробуйте еще раз: ";
+            getline(cin, login);
+        }
+
+        cout << "Введите пароль (восемь символов): ";
+        getline(cin, password);
+
+        while (password.length() != 8)
+        {
+            cout << "Пароль должен быть ровно восемь символов. Попробуйте еще раз: ";
+            getline(cin, password);
+        }
+
+        saveLoginAndPassword(login, password, "login_password.txt");
+    }
+
+    void check()
+    {
+
+    }
+
+private:
 
     void saveLoginAndPassword(const string& login, const string& password, const string& filename)
     {
@@ -97,20 +98,15 @@ public:
             cout << "Ошибка открытия файла " << filename << endl;
         }
     }
+
 };
 
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    Authorization aza;
-    string login = aza.autoLoginGeneration();
-    string password = aza.autoPasswordGeneration();
-
-    cout << "Логин: " << login << endl;
-    cout << "Пароль: " << password << endl;
-
-    aza.saveLoginAndPassword(login, password, "login_password.txt");
-
+    Authorization user;
+    user.autoGeneration();
+    user.enterLoginAndPassword();
     return 0;
 }
