@@ -1,6 +1,3 @@
-// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,7 +17,6 @@ public:
     {
         srand(time(NULL));
     }
-
 
     void autoGeneration() // для автогенерации логина с паролем
     {
@@ -77,14 +73,45 @@ public:
         saveLoginAndPassword(login, password, "login_password.txt");
     }
 
-    void check()
+    void checkLoginAndPassword() // для проверки логина и пароля, тобишь для входа в систему условно
     {
+        string login, password, name;
+        name = "0";
+        cout << "Введите логин: ";
+        getline(cin, login);
+        cout << "Введите пароль: ";
+        getline(cin, password);
 
+
+        ifstream file("login_password.txt");
+        if (file.is_open())
+        {
+            string line;
+            while (getline(file, line)) // считывание файла по строкам
+            {
+                if (line.find("Логин: " + login) != string::npos) // если найдена строка с указанным логином, считываем и пароль
+                {
+                    getline(file, line);
+                    if (line.find("Пароль: " + password) != string::npos)
+                    {
+                        file.close();
+                        name = login;
+                        cout << "Добро пожаловать, " << name << "!" << endl;
+                    }
+                }
+            }
+            file.close();
+        }
+        if (name == "0")
+        {
+            cout << "Неправильно введены логин или пароль " << endl;
+        }
+        name = "0";
     }
 
 private:
 
-    void saveLoginAndPassword(const string& login, const string& password, const string& filename)
+    void saveLoginAndPassword(const string& login, const string& password, const string& filename) // сохранялка
     {
         ofstream file(filename, ios::app);
         if (file.is_open())
@@ -92,21 +119,11 @@ private:
             file << "Логин: " << login << endl;
             file << "Пароль: " << password << '\n' << endl;
             file.close();
+            cout << "Данные сохранены " << endl;
         }
         else
         {
             cout << "Ошибка открытия файла " << filename << endl;
         }
     }
-
 };
-
-int main()
-{
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    Authorization user;
-    user.autoGeneration();
-    user.enterLoginAndPassword();
-    return 0;
-}
