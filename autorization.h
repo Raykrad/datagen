@@ -18,6 +18,7 @@ public:
         srand(time(NULL));
     }
 
+
     void autoGeneration() // для автогенерации логина с паролем
     {
         const int passwordLength = 8, loginLength = 12;
@@ -45,6 +46,10 @@ public:
         autologin[loginLength] = '\0';
         autopassword[passwordLength] = '\0';
 
+
+        cout << "Логин и пароль были сгенерированы успешно, запомните их для дальнейшего входа в систему " << endl;
+        cout << "Логин: " << autologin << endl;
+        cout << "Пароль: " << autopassword << "\n" << endl;
         saveLoginAndPassword(autologin, autopassword, "login_password.txt");
     }
 
@@ -111,7 +116,7 @@ public:
 
 private:
 
-    void saveLoginAndPassword(const string& login, const string& password, const string& filename) // сохранялка
+    void saveLoginAndPassword(const string& login, const string& password, const string& filename) // сохранялка 
     {
         ofstream file(filename, ios::app);
         if (file.is_open())
@@ -126,4 +131,5 @@ private:
             cout << "Ошибка открытия файла " << filename << endl;
         }
     }
+
 };
