@@ -27,11 +27,11 @@ public:
         {
             int random = rand() % 62; // генерация случайного числа от 0 до 61, для определения символа, буква или цифра, какого реестра
             if (random < 26)
-                autopassword[i] = 'a' + random; // случайная буква от 'a' до 'z'
+                autopassword[i] = 'a' + random;
             else if (random < 52)
-                autopassword[i] = 'A' + random - 26; // случайная буква от 'A' до 'Z'
+                autopassword[i] = 'A' + random - 26;
             else
-                autopassword[i] = '0' + random - 52; // случайная цифра от '0' до '9'
+                autopassword[i] = '0' + random - 52;
         }
 
         for (int i = 0; i < loginLength; i++)
