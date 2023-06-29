@@ -46,10 +46,9 @@ public:
         autologin[loginLength] = '\0';
         autopassword[passwordLength] = '\0';
 
-
         cout << "Логин и пароль были сгенерированы успешно, запомните их для дальнейшего входа в систему " << endl;
         cout << "Логин: " << autologin << endl;
-        cout << "Пароль: " << autopassword << "\n" << endl;
+        cout << "Пароль: " << autopassword << "" << endl;
         saveLoginAndPassword(autologin, autopassword, "login_password.txt");
     }
 
@@ -112,6 +111,74 @@ public:
             cout << "Неправильно введены логин или пароль " << endl;
         }
         name = "0";
+    }
+
+    void changeLoginOrPassword() // редактура уже существующих логинов с паролями
+    {
+        string login, password;
+        cout << "Введите логин: ";
+        getline(cin, login);
+        cout << "Введите пароль: ";
+        getline(cin, password);
+
+        ifstream file("login_password.txt");
+        if (!file) 
+        {
+            cout << "Ошибка открытия файла login_password.txt" << endl;
+            return;
+        }
+
+        string line, newLine;
+        bool found = false;
+
+        cout << "Выберите, что вы хотите изменить (1 - логин, 2 - пароль): ";
+        int choice;
+        cin >> choice;
+        cin.ignore(); // игнор новой строки, без этого всё ломается (костыль)
+
+        while (getline(file, line)) 
+        {
+            if (line.find("Логин: " + login) != string::npos && choice == 1) 
+            {
+                cout << "Старый логин: " << login << endl;
+                cout << "Введите новый логин: ";
+                getline(cin, login);
+                newLine += "Логин: " + login + "\n";
+                found = true;
+                cout << "Логин успешно изменён" << endl;
+                continue;
+            }
+            if (line.find("Пароль: " + password) != string::npos && choice == 2) 
+            {
+                cout << "Старый пароль: " << password << endl;
+                cout << "Введите новый пароль: ";
+                getline(cin, password);
+                newLine += "Пароль: " + password + "\n";
+                found = true;
+                cout << "Пароль успешно изменён" << endl;
+                continue;
+            }
+            newLine += line + "\n";
+        }
+
+        file.close();
+
+        if (!found) 
+        {
+            cout << "Логин или пароль не найдены" << endl;
+            return;
+        }
+
+        ofstream outFile("login_password.txt");
+        if (!outFile) 
+        {
+            cout << "Ошибка открытия файла login_password.txt" << endl;
+            return;
+        }
+
+        outFile << newLine;
+        outFile.close();
+
     }
 
 private:
