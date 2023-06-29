@@ -18,6 +18,34 @@ public:
         srand(time(NULL));
     }
 
+    void authorizationMenu()
+    {
+        int cases = 0;
+        while (cases != 5)
+        {
+            cout << "\nДля доступа к системе, войдите в свой аккаунт." << endl;
+            cout << "Для входа введите '1' \nЕсли у вас нет учётной записи, введите '2' для автоматической генерации или '3' для ручного ввода данных \nЕсли вы хотите отредактировать уже существующие данные, введите '4'" << endl;
+            cout << "Введите номер желаемого действия: ";
+            cin >> cases;
+            switch (cases)
+            {
+            case 1:
+                checkLoginAndPassword();
+                break;
+            case 2:
+                autoGeneration();
+                break;
+            case 3:
+                enterLoginAndPassword();
+                break;
+            case 4:
+                changeLoginOrPassword();
+                break;
+            }
+        }
+    }
+
+    private:
 
     void autoGeneration() // для автогенерации логина с паролем
     {
@@ -27,11 +55,11 @@ public:
         {
             int random = rand() % 62; // генерация случайного числа от 0 до 61, для определения символа, буква или цифра, какого реестра
             if (random < 26)
-                autopassword[i] = 'a' + random;
+                autopassword[i] = 'a' + random; // случайная буква от 'a' до 'z'
             else if (random < 52)
-                autopassword[i] = 'A' + random - 26;
+                autopassword[i] = 'A' + random - 26; // случайная буква от 'A' до 'Z'
             else
-                autopassword[i] = '0' + random - 52;
+                autopassword[i] = '0' + random - 52; // случайная цифра от '0' до '9'
         }
 
         for (int i = 0; i < loginLength; i++)
@@ -180,8 +208,6 @@ public:
         outFile.close();
 
     }
-
-private:
 
     void saveLoginAndPassword(const string& login, const string& password, const string& filename) // сохранялка 
     {
