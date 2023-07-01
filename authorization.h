@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <Windows.h>
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
@@ -23,9 +22,9 @@ public:
         int cases = 0;
         while (cases != 5)
         {
-            cout << "\nДля доступа к системе, войдите в свой аккаунт." << endl;
-            cout << "Для входа введите '1' \nЕсли у вас нет учётной записи, введите '2' для автоматической генерации или '3' для ручного ввода данных \nЕсли вы хотите отредактировать уже существующие данные, введите '4'" << endl;
-            cout << "Введите номер желаемого действия: ";
+            cout << "\nTo access the system, log in to your account." << endl;
+            cout << "To log in, enter '1';\nIf you don't have an account, enter '2' for automatic generation or '3' for manual data entry;\nIf you want to edit already existing data, enter '4'." << endl;
+            cout << "Enter the desired action number: ";
             cin >> cases;
             switch (cases)
             {
@@ -74,9 +73,9 @@ public:
         autologin[loginLength] = '\0';
         autopassword[passwordLength] = '\0';
 
-        cout << "Логин и пароль были сгенерированы успешно, запомните их для дальнейшего входа в систему " << endl;
-        cout << "Логин: " << autologin << endl;
-        cout << "Пароль: " << autopassword << "" << endl;
+        cout << "Login and password were generated successfully, remember them for further login." << endl;
+        cout << "Login: " << autologin << endl;
+        cout << "Password: " << autopassword << "" << endl;
         saveLoginAndPassword(autologin, autopassword, "login_password.txt");
     }
 
@@ -84,21 +83,23 @@ public:
     {
         string login, password;
 
-        cout << "Введите логин (до 12 символов): ";
+        cout << "Enter your username (up to 12 characters): ";
         getline(cin, login);
 
         while (login.length() > 12)
         {
-            cout << "Логин должен быть не более 12 символов. Попробуйте еще раз: ";
+            cout << "The username must be no more than 12 characters. Try again: ";
             getline(cin, login);
         }
 
-        cout << "Введите пароль (восемь символов): ";
+        cin.ignore();
+
+        cout << "Enter the password (eight characters): ";
         getline(cin, password);
 
         while (password.length() != 8)
         {
-            cout << "Пароль должен быть ровно восемь символов. Попробуйте еще раз: ";
+            cout << "The password must be exactly eight characters long. Try again: ";
             getline(cin, password);
         }
 
@@ -109,9 +110,9 @@ public:
     {
         string login, password, name;
         name = "0";
-        cout << "Введите логин: ";
+        cout << "Enter your username: ";
         getline(cin, login);
-        cout << "Введите пароль: ";
+        cout << "Enter the password: ";
         getline(cin, password);
 
 
@@ -121,14 +122,14 @@ public:
             string line;
             while (getline(file, line)) // считывание файла по строкам
             {
-                if (line.find("Логин: " + login) != string::npos) // если найдена строка с указанным логином, считываем и пароль
+                if (line.find("Username: " + login) != string::npos) // если найдена строка с указанным логином, считываем и пароль
                 {
                     getline(file, line);
-                    if (line.find("Пароль: " + password) != string::npos)
+                    if (line.find("Password: " + password) != string::npos)
                     {
                         file.close();
                         name = login;
-                        cout << "Добро пожаловать, " << name << "!" << endl;
+                        cout << "Welcome, " << name << "!" << endl;
                     }
                 }
             }
@@ -136,7 +137,7 @@ public:
         }
         if (name == "0")
         {
-            cout << "Неправильно введены логин или пароль " << endl;
+            cout << "Username or password entered incorrectly " << endl;
         }
         name = "0";
     }
@@ -144,46 +145,46 @@ public:
     void changeLoginOrPassword() // редактура уже существующих логинов с паролями
     {
         string login, password;
-        cout << "Введите логин: ";
+        cout << "Enter your username: ";
         getline(cin, login);
-        cout << "Введите пароль: ";
+        cout << "Enter the password: ";
         getline(cin, password);
 
         ifstream file("login_password.txt");
         if (!file) 
         {
-            cout << "Ошибка открытия файла login_password.txt" << endl;
+            cout << "File opening error login_password.txt" << endl;
             return;
         }
 
         string line, newLine;
         bool found = false;
 
-        cout << "Выберите, что вы хотите изменить (1 - логин, 2 - пароль): ";
+        cout << "Choose what you want to change (1 - username, 2 - password): ";
         int choice;
         cin >> choice;
         cin.ignore(); // игнор новой строки, без этого всё ломается (костыль)
 
         while (getline(file, line)) 
         {
-            if (line.find("Логин: " + login) != string::npos && choice == 1) 
+            if (line.find("Username: " + login) != string::npos && choice == 1) 
             {
-                cout << "Старый логин: " << login << endl;
-                cout << "Введите новый логин: ";
+                cout << "Old username: " << login << endl;
+                cout << "Enter new username: ";
                 getline(cin, login);
-                newLine += "Логин: " + login + "\n";
+                newLine += "Username: " + login + "\n";
                 found = true;
-                cout << "Логин успешно изменён" << endl;
+                cout << "Username successfully changed" << endl;
                 continue;
             }
-            if (line.find("Пароль: " + password) != string::npos && choice == 2) 
+            if (line.find("Password: " + password) != string::npos && choice == 2) 
             {
-                cout << "Старый пароль: " << password << endl;
-                cout << "Введите новый пароль: ";
+                cout << "Old password: " << password << endl;
+                cout << "Enter new password: ";
                 getline(cin, password);
-                newLine += "Пароль: " + password + "\n";
+                newLine += "Password: " + password + "\n";
                 found = true;
-                cout << "Пароль успешно изменён" << endl;
+                cout << "Password successfully changed" << endl;
                 continue;
             }
             newLine += line + "\n";
@@ -193,14 +194,14 @@ public:
 
         if (!found) 
         {
-            cout << "Логин или пароль не найдены" << endl;
+            cout << "Login or password not found" << endl;
             return;
         }
 
         ofstream outFile("login_password.txt");
         if (!outFile) 
         {
-            cout << "Ошибка открытия файла login_password.txt" << endl;
+            cout << "File opening error login_password.txt" << endl;
             return;
         }
 
@@ -214,14 +215,14 @@ public:
         ofstream file(filename, ios::app);
         if (file.is_open())
         {
-            file << "Логин: " << login << endl;
-            file << "Пароль: " << password << '\n' << endl;
+            file << "Username: " << login << endl;
+            file << "Password: " << password << '\n' << endl;
             file.close();
-            cout << "Данные сохранены " << endl;
+            cout << "Data saved." << endl;
         }
         else
         {
-            cout << "Ошибка открытия файла " << filename << endl;
+            cout << "File opening error." << filename << endl;
         }
     }
 
