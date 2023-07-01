@@ -20,7 +20,8 @@ public:
     void authorizationMenu()
     {
         int cases = 0;
-        while (cases != 5)
+        bool loginCompleted = false;
+        while (loginCompleted != true)
         {
             cout << "\nTo access the system, log in to your account." << endl;
             cout << "To log in, enter '1';\nIf you don't have an account, enter '2' for automatic generation or '3' for manual data entry;\nIf you want to edit already existing data, enter '4'." << endl;
@@ -44,7 +45,7 @@ public:
         }
     }
 
-    private:
+private:
 
     void autoGeneration() // для автогенерации логина с паролем
     {
@@ -84,23 +85,23 @@ public:
         string login, password;
 
         cout << "Enter your username (up to 12 characters): ";
-        getline(cin, login);
+        cin >> login;
 
         while (login.length() > 12)
         {
             cout << "The username must be no more than 12 characters. Try again: ";
-            getline(cin, login);
+            cin >> login;
         }
 
         cin.ignore();
 
         cout << "Enter the password (eight characters): ";
-        getline(cin, password);
+        cin >> password;
 
         while (password.length() != 8)
         {
             cout << "The password must be exactly eight characters long. Try again: ";
-            getline(cin, password);
+            cin >> password;
         }
 
         saveLoginAndPassword(login, password, "login_password.txt");
@@ -109,11 +110,12 @@ public:
     void checkLoginAndPassword() // для проверки логина и пароля, тобишь для входа в систему условно
     {
         string login, password, name;
+        bool loginCompleted = false;
         name = "0";
         cout << "Enter your username: ";
-        getline(cin, login);
+        cin >> login;
         cout << "Enter the password: ";
-        getline(cin, password);
+        cin >> password;
 
 
         ifstream file("login_password.txt");
@@ -128,6 +130,7 @@ public:
                     if (line.find("Password: " + password) != string::npos)
                     {
                         file.close();
+                        loginCompleted = true;
                         name = login;
                         cout << "Welcome, " << name << "!" << endl;
                     }
@@ -146,12 +149,12 @@ public:
     {
         string login, password;
         cout << "Enter your username: ";
-        getline(cin, login);
+        cin >> login;
         cout << "Enter the password: ";
-        getline(cin, password);
+        cin >> password;
 
         ifstream file("login_password.txt");
-        if (!file) 
+        if (!file)
         {
             cout << "File opening error login_password.txt" << endl;
             return;
@@ -165,23 +168,23 @@ public:
         cin >> choice;
         cin.ignore(); // игнор новой строки, без этого всё ломается (костыль)
 
-        while (getline(file, line)) 
+        while (getline(file, line))
         {
-            if (line.find("Username: " + login) != string::npos && choice == 1) 
+            if (line.find("Username: " + login) != string::npos && choice == 1)
             {
                 cout << "Old username: " << login << endl;
                 cout << "Enter new username: ";
-                getline(cin, login);
+                cin >> login;
                 newLine += "Username: " + login + "\n";
                 found = true;
                 cout << "Username successfully changed" << endl;
                 continue;
             }
-            if (line.find("Password: " + password) != string::npos && choice == 2) 
+            if (line.find("Password: " + password) != string::npos && choice == 2)
             {
                 cout << "Old password: " << password << endl;
                 cout << "Enter new password: ";
-                getline(cin, password);
+                cin >> password;
                 newLine += "Password: " + password + "\n";
                 found = true;
                 cout << "Password successfully changed" << endl;
@@ -192,14 +195,14 @@ public:
 
         file.close();
 
-        if (!found) 
+        if (!found)
         {
             cout << "Login or password not found" << endl;
             return;
         }
 
         ofstream outFile("login_password.txt");
-        if (!outFile) 
+        if (!outFile)
         {
             cout << "File opening error login_password.txt" << endl;
             return;
