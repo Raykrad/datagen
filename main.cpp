@@ -32,7 +32,7 @@ int main()
         case 5:
             break;
         default:
-            cout << "Введён неправильный индекс." << endl;
+            cout << "Incorrect index entered." << endl;
             break;
         }
     }
