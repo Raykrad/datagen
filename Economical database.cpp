@@ -166,7 +166,7 @@ class EconomicalDate
 			else  cout << "\n Oops, no deletion data found!" << endl;
 		}
 
-		void FullGenerate(vector<EconomicalDate>& EcoDate) // функция генерирующая случайные значения всех параметров объекта базы данных
+				void FullGenerate(vector<EconomicalDate>& EcoDate) // функция генерирующая случайные значения всех параметров объекта базы данных
 		{
 			double rev;
 			double exp;
@@ -186,11 +186,26 @@ class EconomicalDate
 
 			EcoDate.push_back(EconomicalDate(rev,exp,prof,ass,liab));
 			}
-			if (n <= 10) cout<<"The generation was successful! It was easy."<<endl;
-			if ((n > 10) && (n <= 100)) cout <<"The generation was successful! That's not fast."<< endl;
-			if ((n == 1911) ||( n == 911)) cout <<"You made it!"<< endl;
-			if ((n > 10) && (n <= 10000)) cout <<"It was hard... but we made it!"<< endl;
-			if ( n > 10000) cout <<"You better NOT call the <Show> function :/"<<endl;
+			if (n <= 10)
+			{
+				cout<<"\n The generation was successful! It was easy."<<endl;
+			}
+			else if ((n > 10) && (n <= 100))
+				{
+					cout <<"\n The generation was successful! That's not fast."<< endl;
+				}
+				else if ((n == 1911) ||( n == 911))
+					{
+						cout <<"\n You made it!"<< endl;
+					}
+					else if ((n > 10) && (n <= 10000))
+						{
+							cout <<"\n It was hard... but we made it!"<< endl;
+						}
+							else if ( n > 10000)
+								{
+									cout <<"\n You better NOT call the <Show> function :/"<<endl;
+								}
         }
 
     public:
