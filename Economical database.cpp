@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 using namespace std;
-
+ЗДЕСЬ БЫЛ ИЛЬЯ
 class EconomicalDate
 {
     private:
