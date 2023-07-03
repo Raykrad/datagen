@@ -1,20 +1,466 @@
-﻿// GeografyDatabase.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
 #include <iostream>
 
-int main()
+#include <string>
+
+#include <vector>
+
+#include <cstdlib>
+
+#include <cstdlib>
+
+using namespace std;
+
+// Класс "География организаций"
+
+class Geograf_organizations {
+
+private:
+
+    string A_STRANA; // СТРАНА!
+
+    string A_GOROD; // ГОРОД!
+
+    string A_ADRES; // АДРЕС
+
+    int A_POCHTA; // ПОЧТА
+
+
+
+public:
+    // Конструктор по умолчанию
+
+    Geograf_organizations() {
+
+        this->A_STRANA = "";
+
+        this->A_GOROD = "";
+
+        this->A_ADRES = "";
+
+        this->A_POCHTA = 0;
+
+    }
+
+    // Параметрический конструктор
+
+    Geograf_organizations(string strana, string gorod, string adres, int pochta) {
+
+        this->A_STRANA = strana;
+
+        this->A_GOROD = gorod;
+
+        this->A_ADRES = adres;
+
+        this->A_POCHTA = pochta;
+
+    }
+
+    // Конструктор копирования
+
+    Geograf_organizations(const Geograf_organizations& other) {
+
+        this->A_STRANA = other.A_STRANA;
+
+        this->A_GOROD = other.A_GOROD;
+
+        this->A_ADRES = other.A_ADRES;
+
+        this->A_POCHTA = other.A_POCHTA;
+
+    }
+
+
+
+    // Деструктор
+
+    ~Geograf_organizations() {}
+
+    // Методы set
+
+    void setA_STRANA(string strana) {
+
+        this->A_STRANA = strana;
+
+    }
+
+    void setA_GOROD(string gorod)
+    {
+        this->A_GOROD = gorod;
+    }
+
+    void setA_ADRES(string adres)
+    {
+        this->A_ADRES = adres;
+    }
+
+    void setA_POCHTA(int pochta) {
+
+        this->A_POCHTA = pochta;
+
+    }
+
+    // Методы get
+
+    string getA_STRANA() {
+
+        return this->A_STRANA;
+
+    }
+
+    string getA_GOROD() {
+
+        return this->A_GOROD;
+
+    }
+
+    string getA_ADRES() {
+
+        return this->A_ADRES;
+
+    }
+
+
+    int getA_POCHTA() {
+
+        return this->A_POCHTA;
+
+    }
+
+
+
+    // Метод show
+
+    void show() {
+
+        cout << "Organization's country: " << this->A_STRANA << endl;
+
+        cout << "Organization's city: " << this->A_GOROD << endl;
+
+        cout << "Organization's address: " << this->A_ADRES << endl;
+
+        cout << "Postal code: " << this->A_POCHTA << endl;
+
+    }
+
+};
+
+
+/////////////////////////////////////// НОВАЯ ЧАСТЬ!!!
+// Функция для добавления новой организации в массив
+
+void addGeograf_organizations(vector<Geograf_organizations>& Geografies)
 {
-    std::cout << "Hello World!\n";
+
+    string strana, gorod, adres;
+
+    int pochta;
+
+    // Получаем данные от пользователя
+
+    cout << "Enter the organization's Country: ";
+
+    cin >> strana;
+
+    // Здесь бы проверку на значение сделать
+
+
+    cout << "Enter the organization's city: ";
+
+    cin >> gorod;
+
+    // Здесь бы проверку на значение сделать
+
+
+    cout << "Enter the organization's Address (Street_Number): ";
+
+    cin >> adres;
+
+    // Здесь бы проверку на значение сделать
+
+
+    cout << "Enter the zip code: ";
+
+    cin >> pochta;
+
+
+
+    // Создаем новый объект Geograf_organizations на основе введенных данных и добавляем его в массив
+
+    Geografies.push_back(Geograf_organizations(strana, gorod, adres, pochta));
+
+    cout << "The organization has been added successfully!" << endl;
+
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+// Функция для удаления организации из массива
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+void deleteGeograf_organizations(vector<Geograf_organizations>& Geografies) {
+
+    int index;
+
+    // Выводим список организаций
+
+    for (int i = 0; i < Geografies.size(); i++)
+    {
+
+        cout << "#" << i << ". ";
+
+        Geografies[i].show();
+
+        cout << endl;
+
+    }
+
+    // Получаем номер организации, который нужно удалить
+
+    cout << "Enter the number of the organization you want to delete: ";
+
+    cin >> index;
+
+    if (index >= 0 && index < Geografies.size())
+    {
+
+        Geografies.erase(Geografies.begin() + index);
+
+        cout << "The organization has been successfully deleted!" << endl;
+
+    }
+
+    else
+    {
+        cout << "Invalid organization number!" << endl;
+    }
+
+}
+
+
+
+// Функция для изменения свойства выбранной пользователем организации на новое значение
+
+void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
+
+    int index, property, newValue;
+    string NewValueString;
+
+    // Выводим список географических данных организаций
+
+    for (int i = 0; i < Geografies.size(); i++) {
+
+        cout << "#" << i << ". ";
+
+        Geografies[i].show();
+
+        cout << endl;
+
+    }
+
+    // Получаем номер организации, свойство которого нужно изменить, и какое свойство
+
+    cout << "Enter the number of the organization whose parameters you want to change: ";
+
+    cin >> index;
+
+    if (index >= 0 && index < Geografies.size())
+    {
+
+        cout << "Select the property you want to change: " << endl;
+
+        cout << "1 - Organization's country" << endl;
+
+        cout << "2 - Organization's city" << endl;
+
+        cout << "3 - Organization's address" << endl;
+
+        cout << "4 - Postal code of the organization" << endl;
+
+        cin >> property;
+
+        switch (property) {
+
+        case 1:
+
+            cout << "Enter the new country of the organization: ";
+
+            cin >> NewValueString;
+
+            Geografies[index].setA_STRANA(NewValueString);
+
+
+            break;
+
+        case 2:
+
+            cout << "Enter the organization's new city: ";
+
+            cin >> NewValueString;
+
+            Geografies[index].setA_GOROD(NewValueString);
+
+            break;
+
+        case 3:
+
+            cout << "Enter the new address of the organization (street_number): ";
+
+            cin >> NewValueString;
+
+            Geografies[index].setA_ADRES(NewValueString);
+
+            break;
+
+        case 4:
+
+            cout << "Enter the zip code: ";
+
+            cin >> newValue;
+
+
+            Geografies[index].setA_POCHTA(newValue);
+
+            break;
+
+        default:
+
+            cout << "Incorrect parameter selection!" << endl;
+
+            break;
+
+        }
+
+        cout << "The parameter has been successfully changed!" << endl;
+
+    }
+
+    else {
+
+        cout << "Invalid organization number!" << endl;
+
+    }
+
+}
+
+// Основная функция программы
+
+
+int main() {
+
+    setlocale(LC_ALL, "Russian");
+
+    vector<Geograf_organizations> Geografies;
+
+
+    // ЗДЕСЬ МАССИВ СО ЗНАЧЕНИЯМИ, КОТОРЫЕ БУДУТ СЛУЧАЙНО ПРИСВАИВАТЬСЯ ДЛЯ ПЕРВЫХ ДРУХ ОРГАНИЗАЦИЙ И ГЕНЕРАЦИЯ ЧСЕЛ ДЛЯ ID
+    
+    const string countryes[5] = {"Russian_Empire", "Soviet_Union", "Russia_Federation", "Russian_Republic", "Principality_of_Moscow"};
+    const string cities[5] = { "Moscow", "Vladimir", "Voronezh", "Novosibirsk", "Norilsk"};
+    const string adress[5] = { "lenin_avenue_20", "43_moscow_street", "5_krasnoznamennaya_street", "87_mukhomorova_street", "81_slivkov_street" };
+    const int indexx[5] = { 666666, 123456, 126758, 838351, 146111};
+
+    int randIndex = rand() % 5; // рандом индекс
+    string SelectCountry = countryes[randIndex];
+    string SelectCities = cities[randIndex];
+    string SelectAdress = adress[randIndex];
+    int Selectindexx = indexx[randIndex];
+
+    // Создаем две организации со свойствами
+
+    Geograf_organizations Geograf_organizations1(SelectCountry, SelectCities, SelectAdress, Selectindexx);
+
+    int randIndex2 = rand() % 5; // рандом индекс заново, для второй организации
+
+    string SelectCountry2 = countryes[randIndex2];
+    string SelectCities2 = cities[randIndex2];
+    string SelectAdress2 = adress[randIndex2];
+    int Selectindexx2 = indexx[randIndex2];
+
+    Geograf_organizations Geograf_organizations2(SelectCountry2, SelectCities2, SelectAdress2, Selectindexx2);
+
+    Geografies.push_back(Geograf_organizations1);
+
+    Geografies.push_back(Geograf_organizations2);
+
+
+    int choice;
+
+    while (true) {
+
+        // Выводим меню
+
+        cout << endl << "1 - Display information about all geographical data of organizations" << endl;
+
+        cout << "2 - Add an organization" << endl;
+
+        cout << "3 - Delete an organization" << endl;
+
+        cout << "4 - Change the geographical parameters of the organization" << endl;
+
+        cout << "0 - Exit" << endl;
+
+        cout << "Select an action: ";
+
+        cin >> choice;
+
+        cout << "\n";
+
+
+
+        switch (choice) {
+
+        case 1:
+
+            // Выводим информацию обо всех географических данных организаций
+
+            for (int i = 0; i < Geografies.size(); i++) {
+
+                cout << "#" << i << ". ";
+
+                Geografies[i].show();
+
+                cout << endl;
+
+            }
+
+            break;
+
+        case 2:
+
+            // Добавляем новую организацию
+
+
+            addGeograf_organizations(Geografies);
+
+            break;
+
+        case 3:
+
+            // Удаляем организацию
+
+            deleteGeograf_organizations(Geografies);
+
+            break;
+
+        case 4:
+
+            // Изменяем свойства организации
+
+            editGeograf_organizations(Geografies);
+
+            break;
+
+        case 0:
+
+            // Выходим из программы
+
+            return 0;
+
+        default:
+
+            cout << "Wrong choice of action!" << endl;
+
+            break;
+
+        }
+
+    }
+
+}
