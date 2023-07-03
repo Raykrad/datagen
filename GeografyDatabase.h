@@ -388,15 +388,15 @@ void runGeografy() {
 
         cout << endl << "1. Display information about all geographical data of organizations" << endl;
 
-        cout << "2. Add an organization" << endl;
+        cout << "\n2. Add an organization" << endl;
 
-        cout << "3. Delete an organization" << endl;
+        cout << "\n3. Delete an organization" << endl;
 
-        cout << "4. Change the geographical parameters of the organization" << endl;
+        cout << "\n4. Change the geographical parameters of the organization" << endl;
 
-        cout << "5. Exit" << endl;
+        cout << "\n5. Exit" << endl;
 
-        cout << "Select an action: ";
+        cout << "\nSelect an action: ";
 
         cin >> choice;
 
