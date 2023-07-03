@@ -35,7 +35,7 @@ class EconomicalDate
 
 		string brandNameGeneration() // генератор брендов компании
 		{
-			string MassName[20] = {"Coconut","cipsy pola","Сhnapps","Stairs","Stone","DoKa","Genacide","Flowers","Bosch","Plane","Apple","Pear","Furniture","Pen","The Sun","Keyboard","Penicillin","Needle","Pineapple","Paper"};
+			string MassName[20] = {"Coconut","cipsy pola","Shnapps","Stairs","Stone","DoKa","Genacide","Flowers","Bosch","Plane","Apple","Pear","Furniture","Pen","The Sun","Keyboard","Penicillin","Needle","Pineapple","Paper"};
 			string name;
 			int index = rand() % 20;
 			name = MassName[index];
