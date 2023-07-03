@@ -133,7 +133,7 @@ public:
 
     void show() {
 
-        cout << "\nOrganization's country: " << this->A_STRANA << endl;
+        cout << "Organization's country: " << this->A_STRANA << endl;
 
         cout << "Organization's city: " << this->A_GOROD << endl;
 
@@ -168,14 +168,12 @@ void addGeograf_organizations(vector<Geograf_organizations>& Geografies)
 
 
 
-    cin.ignore();
     getline(cin, gorod);
 
 
     cout << "Enter the organization's Address (Street_Number): ";
 
  
-    cin.ignore();
     getline(cin, adres);
 
 
