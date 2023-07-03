@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\Games\Noita\main\authorization.h(17,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Games\Noita\main\Economical database.h(244,14): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  main.vcxproj -> D:\Games\Noita\main\x64\Debug\main.exe
