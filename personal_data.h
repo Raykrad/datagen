@@ -255,23 +255,15 @@ void addPersonal_information(vector<Personal_information>& Personal_data)
 
 
     cout << "Enter  Address (Street_Number): ";
-
     cin >> adres;
 
-
-
     cout << "Enter the zip code: ";
-
     cin >> mail;
 
-    
     cout << "Enter the email: ";
-
     cin >> email;
 
-   
     cout << "Enter  phone number: ";
-
     cin >> phone_number;
 
 
@@ -305,7 +297,7 @@ void deletePersonal_information(vector<Personal_information>& Personal_data) {
 
     }
 
-    // Получаем номер человека, который нужно удалить
+    // Получаем номер человека, которого нужно удалить
 
     cout << "Enter the number of the person you want to delete: ";
 
@@ -329,7 +321,7 @@ void deletePersonal_information(vector<Personal_information>& Personal_data) {
 
 
 
-// Функция для изменения свойства выбраного пользователем человека на новое значение
+// Функция для изменения данных выбраного пользователем человека 
 
 void editPersonal_information(vector<Personal_information>& Personal_data) {
 
@@ -348,7 +340,7 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
 
     }
 
-    // Получаем номер человека, свойство которого нужно изменить, и какое свойство
+    // Получаем номер человека, личные данные которого нужно изменить
 
     cout << "Enter the number of the person whose parameters you want to change: ";
 
@@ -468,7 +460,7 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
 // Основная функция программы
 
 
-int main() {
+void runPersonal() {
 
     setlocale(LC_ALL, "Russian");
 
@@ -477,7 +469,7 @@ int main() {
 
     // ЗДЕСЬ МАССИВ С ИМЕНАМИ, ФАМИЛИЯМИ, СТРАНАМИ, ГОРОДАМИ, АДРЕСАМИ, ИНДЕКСАМИ, ЭЛЕКТРОННЫМИ ПОЧТАМИ, ТЕЛЕФОННЫМИ НОМЕРАМИ И ПЕРЕМЕННЫЕ "ИМЯ","ФАМИЛИЯ","СТРАНА","ГОРОД","УЛИЦА","ИНДЕКС","ЕМАИЛ","НОМЕР ТЕЛЕФОНА" БУДУТ ПРИСВАИВАТЬСЯ ИЗ МАССИВА РАНДОМНЫМ ИНДЕКСОМ
     const string names[5] = {"Egor", "Ilya", "Denis", "Vadim", "Firuz"};
-    const string surnames[5] = {"Slivkov", "Miheev", "Shmarin", "Safarzoda", "Kradov"};
+    const string surnames[5] = {"Kalyuzhny","Slivkov", "Miheev", "Shmarin", "Safarzoda" };
     const string countryes[5] = {"Noth_empire", "United_Union", "Russia_Federation", "Border_Republic", "Great_Voronezh"};
     const string cities[5] = { "Moscow", "Uryupinsk", "Voronezh", "New_Magadan", "Pod_kvasinsk"};
     const string adress[5] = { "Krasna_grad_43", "Lenina_122", "Kozia_453", "Gribkova_88", "New_beer_strit_1561" };
@@ -500,7 +492,7 @@ int main() {
 
     Personal_information Personal_information1(SelectName, SelectSurname, SelectCountry, SelectCities, SelectAdress, Selectindexx, SelectEmail, SelectPhone_number );
 
-    int randIndex2 = rand() % 5; // рандом индекс заново, для второго человека
+    int randIndex2 = rand() % 5; // cлучайный индекс заново, для второго человека
     
     string SelectName2 = names[randIndex2];
     string SelectSurname2 = surnames[randIndex2];
@@ -528,11 +520,11 @@ int main() {
 
         cout << "2 - add people" << endl;
 
-        cout << "3 - delite people" << endl;
+        cout << "3 - delete people" << endl;
 
-        cout << "4 - chenge personal data" << endl;
+        cout << "4 - change personal data" << endl;
 
-        cout << "0 - exsit" << endl;
+        cout << "0 - exit" << endl;
 
         cout << "Select an action: ";
 
@@ -589,11 +581,11 @@ int main() {
 
             // Выходим из программы
 
-            return 0;
+            return;
 
         default:
 
-            cout << "Неверный выбор действия!" << endl;
+            cout << "wrong action choice!" << endl;
 
             break;
 
