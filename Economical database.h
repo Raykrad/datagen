@@ -64,7 +64,7 @@ class EconomicalDate
 		string attachmentGeneration() // генератор приставок к названию компании
 		{
 			string attach;
-			string MassAttach[10] = {"Co.","Inc.","Corp.","Studios","Indastris","Farm","Pharmaceptic","Technology","Research center","Organithation"};
+			string MassAttach[10] = {"Co.","Inc.","Corp.","Studios","Indastris","Farm","Pharmaceptic","Technology","Research center","Organization"};
 			int index = rand() % 10;
 			attach = MassAttach[index];
 			return attach;
@@ -74,7 +74,6 @@ class EconomicalDate
 		{
 			string name;
 			int index = rand() % 7 + 1;
-			cout << index<< endl;
 			switch (index)
 			{
 				case 1:  name = founderNameGeneration();
@@ -299,12 +298,12 @@ class EconomicalDate
         while (cases != 6)
         {
             cout<< "\n Select the item for further work:"<<endl;
-            cout<< "\n 1) Output financial data"<<endl;
-            cout<< "\n 2) Generate new data N times"<<endl;
-            cout<< "\n 3) Generate new data manually"<<endl;
-            cout<< "\n 4) Edit existing data"<<endl;
-            cout<< "\n 5) Delete existing data"<<endl;
-            cout<< "\n 6) Exit"<<endl;
+            cout<< "\n 1. Output financial data"<<endl;
+            cout<< "\n 2. Generate new data N times"<<endl;
+            cout<< "\n 3. Generate new data manually"<<endl;
+            cout<< "\n 4. Edit existing data"<<endl;
+            cout<< "\n 5. Delete existing data"<<endl;
+            cout<< "\n 6. Exit"<<endl;
             cout<< "\n Please, enter number of your chose:"<<endl;
             cin >> cases;
             switch (cases)
@@ -331,27 +330,27 @@ class EconomicalDate
         }
 		}
 		
-		~EconomicalDate(){}// деконструктор по умолчанию
+	~EconomicalDate(){}// деконструктор по умолчанию
 
         EconomicalDate()// конструктор по умолчанию
-		{
-			srand(time(NULL));
-			CompanyName = "the company name must be here";
-            revenue = 0.0;
-            expenses = 0.0;
-            profit = 0.0;
-            assets = 0.0;
-            liabilities = 0.0;
+	{
+		srand(time(NULL));
+		CompanyName = "the company name must be here";
+	        revenue = 0.0;
+	        expenses = 0.0;
+	        profit = 0.0;
+	        assets = 0.0;
+	        liabilities = 0.0;
         }
         
         EconomicalDate(string name, double rev, double exp, double pro, double ass, double lia)// конструктор с параметрами
-		{
-			CompanyName = name;
-            revenue = rev;
-            expenses = exp;
-            profit = pro;
-            assets = ass;
-            liabilities = lia;
+	{
+		CompanyName = name;
+           	revenue = rev;
+          	expenses = exp;
+         	profit = pro;
+        	assets = ass;
+          	liabilities = lia;
         }
 
 		// Гетеры / сетеры
