@@ -275,13 +275,13 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
         cout << "Select the property you want to change: " << endl;
 
         cout << "1. person's name" << endl;
-        cout << "2. person's surname" << endl;
-        cout << "3. person's country" << endl;
-        cout << "4. person's city" << endl;
-        cout << "5. person's address" << endl;
-        cout << "6. person's mail cod" << endl;
-        cout << "7. person's email" << endl;
-        cout << "8. person's phone number" << endl;
+        cout << "\n2. person's surname" << endl;
+        cout << "\n3. person's country" << endl;
+        cout << "\n4. person's city" << endl;
+        cout << "\n5. person's address" << endl;
+        cout << "\n6. person's mail cod" << endl;
+        cout << "\n7. person's email" << endl;
+        cout << "\n8. person's phone number\n" << endl;
 
         cin >> property;
 
