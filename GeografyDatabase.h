@@ -174,6 +174,7 @@ void addGeograf_organizations(vector<Geograf_organizations>& Geografies)
     cout << "Enter the organization's Address (Street_Number): ";
 
  
+
     getline(cin, adres);
 
 
@@ -385,15 +386,15 @@ void runGeografy() {
 
         // Выводим меню
 
-        cout << endl << "1 - Display information about all geographical data of organizations" << endl;
+        cout << endl << "1. Display information about all geographical data of organizations" << endl;
 
-        cout << "2 - Add an organization" << endl;
+        cout << "2. Add an organization" << endl;
 
-        cout << "3 - Delete an organization" << endl;
+        cout << "3. Delete an organization" << endl;
 
-        cout << "4 - Change the geographical parameters of the organization" << endl;
+        cout << "4. Change the geographical parameters of the organization" << endl;
 
-        cout << "0 - Exit" << endl;
+        cout << "5. Exit" << endl;
 
         cout << "Select an action: ";
 
@@ -443,7 +444,7 @@ void runGeografy() {
 
             break;
 
-        case 0:
+        case 5:
 
             // Выходим из программы
 
