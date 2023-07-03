@@ -2,29 +2,16 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
-
 using namespace std;
 
 // Класс "персональные данные"
-
 class Personal_information {
-
 private:
-
-    string A_NAME;       //ИМЯ
-    string A_SURNAME;    // ФАМИЛИЯ
-    string A_STRANA;     // СТРАНА
-    string A_GOROD;      // ГОРОД
-    string A_ADRES;      // АДРЕС
-    string A_MAIL;          // ПОЧТОВЫЙ КОД
-    string A_EMAIL;      // ЕЛЕКТРОННАЯ ПОЧТА
-    string A_PHONE_NUMBER;  // НОМЕР ТЕЛЕФОНА
+    string A_NAME, A_SURNAME, A_STRANA, A_GOROD, A_ADRES, A_MAIL, A_EMAIL, A_PHONE_NUMBER; // Имя, фамилия, страна, город, адрес, почтовый код, электронная почта, номер телефона
 
 public:
 // Конструктор по умолчанию
-
     Personal_information() {
-
         this->A_NAME = "";
         this->A_SURNAME = "";
         this->A_STRANA = "";
@@ -33,13 +20,10 @@ public:
         this->A_MAIL = "";
         this->A_EMAIL = "";
         this->A_PHONE_NUMBER = "";
-
     }
 
-// Параметры
-
+// Параметрический
     Personal_information(string name, string surname, string strana, string gorod, string adres, string mail, string email, string phone_number) {
-
         this->A_NAME = name;
         this->A_SURNAME = surname;
         this->A_STRANA = strana;
@@ -48,13 +32,10 @@ public:
         this->A_MAIL = mail;
         this->A_EMAIL = email;
         this->A_PHONE_NUMBER = phone_number;
-
     }
 
 // Конструктор копирования
-
     Personal_information(const Personal_information& other) {
-
         this->A_NAME = other.A_NAME;
         this->A_SURNAME = other.A_SURNAME;
         this->A_STRANA = other.A_STRANA;
@@ -63,17 +44,12 @@ public:
         this->A_MAIL = other.A_MAIL;
         this->A_EMAIL = other.A_EMAIL;
         this->A_PHONE_NUMBER = other.A_PHONE_NUMBER;
-
     }
 
-
-
 // Деструктор
-
     ~Personal_information() {}
 
 // Методы set
-
     void setA_NAME(string name) {
         this->A_NAME = name;
     }
@@ -106,10 +82,7 @@ public:
         this->A_PHONE_NUMBER = phone_number;
     }
 
-
 // Методы get
-
-
     string getA_NAME() {
         return this->A_NAME;
     }
@@ -142,12 +115,8 @@ public:
         return this->A_PHONE_NUMBER;
     }
 
-
-
 // Метод отвечающий за отображение
-
     void show() {
-
         cout << "Name: " << this->A_NAME << endl;
         cout << "Surname: " << this->A_SURNAME << endl;
         cout << "Country: " << this->A_STRANA << endl;
@@ -159,122 +128,70 @@ public:
     }
 };
 
-
-
 // Функция для добавления нового человека в массив
-
-void addPersonal_information(vector<Personal_information>& Personal_data)
-{
-
+void addPersonal_information(vector<Personal_information>& Personal_data) {
     string name, surname, strana, gorod, adres, email, mail, phone_number;
-
 //Получаем данные от пользователя нужные для добовление человека
     cout << "Enter the name: ";
     cin.ignore();
     getline(cin, name);
-
     cout << "Enter the surname: ";
     getline(cin, surname);
-
     cout << "Enter Country: ";
     getline(cin, strana);
-
     cout << "Enter city: ";
     getline(cin, gorod);
-
     cout << "Enter street and house number: ";
     getline(cin, adres);
-
     cout << "Enter the mail code: ";
     getline(cin, mail);
-
     cout << "Enter the email: ";
     getline(cin, email);
-
     cout << "Enter phone number: ";
     getline(cin, phone_number);
-
-
-
 // Создаем новый объект Personal_information на основе введенных данных и добавляем его в массив
-
     Personal_data.push_back(Personal_information(name, surname, strana, gorod, adres, mail, email, phone_number));
-
     cout << "The personal information has been added successfully!" << endl;
-
 }
 
 // Функция для удаления личных данных из массива
-
 void deletePersonal_information(vector<Personal_information>& Personal_data) {
-
     int index;
 
-// Вывод списока людей
-
-    for (int i = 0; i < Personal_data.size(); i++)
-    {
-
+// Вывод списка людей
+    for (int i = 0; i < Personal_data.size(); i++) {
         cout << "#" << i << ". ";
         Personal_data[i].show();
         cout << endl;
-
     }
-
 // Получаем номер человека, которого нужно удалить
-
     cout << "Enter the number of the person you want to delete: " << endl;
-
     cin >> index;
-
-    if (index >= 0 && index < Personal_data.size())
-    {
-
+    if (index >= 0 && index < Personal_data.size()) {
         Personal_data.erase(Personal_data.begin() + index);
-
         cout << "The person has been successfully deleted!" << endl;
-
     }
-
-    else
-    {
+    else {
         cout << "Invalid person number!" << endl;
     }
-
 }
 
-
-
 // Функция для изменения данных выбраного пользователем человека 
-
 void editPersonal_information(vector<Personal_information>& Personal_data) {
-
     int index, property;
     string NewValueString;
-
 // Выводим список персональных данных человека
-
     for (int i = 0; i < Personal_data.size(); i++) {
-
         cout << "#" << i << ". ";
-
         Personal_data[i].show();
-
         cout << endl;
-
     }
-
 // Получаем номер человека, личные данные которого нужно изменить
-
     cout << "Enter the number of the person whose parameters you want to change: " << endl;
     cin >> index;
-
-    if (index >= 0 && index < Personal_data.size())
-    {
-
+    if (index >= 0 && index < Personal_data.size()) {
         cout << "Select the property you want to change: " << endl;
-
-        cout << "\n1. person's name" << endl;
+        cout << "1. person's name" << endl;
         cout << "\n2. person's surname" << endl;
         cout << "\n3. person's country" << endl;
         cout << "\n4. person's city" << endl;
@@ -282,84 +199,64 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
         cout << "\n6. person's mail cod" << endl;
         cout << "\n7. person's email" << endl;
         cout << "\n8. person's phone number\n" << endl;
-
         cin >> property;
-
+        
         switch (property) {
-
         case 1:
-            cout << "\nEnter the new name of the person: ";
+            cout << "Enter the new name of the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_NAME(NewValueString);
             break;
-
         case 2:
-            cout << "\nEnter the new surname of the person: ";
+            cout << "Enter the new surname of the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_SURNAME(NewValueString);
             break;
-
         case 3:
-            cout << "\nEnter the new country of the person: ";
+            cout << "Enter the new country of the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_STRANA(NewValueString);
             break;
-
         case 4:
-            cout << "\nEnter new city og the person: ";
+            cout << "Enter new city og the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_GOROD(NewValueString);
             break;
-
         case 5:
-            cout << "\nEnter the new address of the person (street_number): ";
+            cout << "Enter the new address of the person (street_number): ";
             cin >> NewValueString;
             Personal_data[index].setA_ADRES(NewValueString);
             break;
-
         case 6:
-            cout << "\nEnter the mail code of the person: ";
+            cout << "Enter the mail code of the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_MAIL(NewValueString);
             break;
-
         case 7:
-            cout << "\nEnter the new email of the person: ";
+            cout << "Enter the new email of the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_EMAIL(NewValueString);
             break;
-
         case 8:
-            cout << "\nEnter the new phone number of the person: ";
+            cout << "Enter the new phone number of the person: ";
             cin >> NewValueString;
             Personal_data[index].setA_PHONE_NUMBER(NewValueString);
             break;
-       
+    
         default:
             cout << "Incorrect parameter selection!" << endl;
             break;
-
         }
-
         cout << "The parameter has been successfully changed!" << endl;
-
     }
-
     else {
-
         cout << " Invalid person number! " << endl;
-
     }
-
 }
 
 // Основная функция программы
-
-
 void runPersonal() {
-
     vector<Personal_information> Personal_data;
-
 // ЗДЕСЬ МАССИВ С ДАННЫМИ
     const string names[5] = {"Egor", "Ilya", "Denis", "Vadim", "Firuz"};
     const string surnames[5] = {"Kalyuzhny","Slivkov", "Miheev", "Shmarin", "Safarzoda" };
@@ -369,8 +266,6 @@ void runPersonal() {
     const string indexx[5] = { "345983", "165446", "576567", "354544", "924824"};
     const string emails[5] = {"kdlnfsknl@gmail.ru","seisfjisjefisjafa@mail.com","fsfdskdfks@beep.su","dsfksdfksfs@hehe.gr","walkingtotheriver24@odd.ti"};
     const string phone_numbers[5] = {"2423842", "234432424", "1234567890" , "88005553535" , "7654321" };
-
-
     int randIndex = rand() % 5; // случайный индекс
     string SelectName = names[randIndex];
     string SelectSurname = surnames[randIndex];
@@ -382,11 +277,8 @@ void runPersonal() {
     string SelectPhone_number = phone_numbers[randIndex];
 
 // Создаем два человека со свойствами
-
     Personal_information Personal_information1(SelectName, SelectSurname, SelectCountry, SelectCities, SelectAdress, Selectindexx, SelectEmail, SelectPhone_number );
-
     int randIndex2 = rand() % 5; // cлучайный индекс заново, для второго человека
-    
     string SelectName2 = names[randIndex2];
     string SelectSurname2 = surnames[randIndex2];
     string SelectCountry2 = countryes[randIndex2];
@@ -397,32 +289,23 @@ void runPersonal() {
     string SelectPhone_number2 = phone_numbers[randIndex2];
 
     Personal_information Personal_information2(SelectName2, SelectSurname2, SelectCountry2, SelectCities2, SelectAdress2, Selectindexx2, SelectEmail2, SelectPhone_number2);
-
     Personal_data.push_back(Personal_information1);
     Personal_data.push_back(Personal_information2);
-
-
     int choice;
     string warning1;
-
     while (true) {
-
         // Вывод меню
         cout << endl << "1. Display information about all personal data of persons" << endl;
-        cout << "\n2. add people" << endl;
-        cout << "\n3. change personal data" << endl;
-        cout << "\n4. delete people" << endl;
-        cout << "\n5. exit" << endl;
-        cout << "\nSelect an action: ";
+        cout << "2. add people" << endl;
+        cout << "3. change personal data" << endl;
+        cout << "4. delete people" << endl;
+        cout << "5. exit" << endl;
+        cout << "Select an action: ";
         cin >> choice;
         cout << "\n";
 
-
-
         switch (choice) {
-
         case 1:
-
             // Выводим информацию обо всех персональных данных человека
             for (int i = 0; i < Personal_data.size(); i++) {
                 cout << "#" << i << ". ";
@@ -430,51 +313,40 @@ void runPersonal() {
                 cout << endl;
             }
             break;
-
         case 2:
             // Добавляем нового человека
             addPersonal_information(Personal_data);
             break;
-
         case 3:
             // Изменяем свойства человека
-            
-            cout << "Do you really want to edit the person's data?"<< endl;
-            cout << "if yes then enter [y] if no enter anything"<< endl;
+            cout << "Do you really want to edit the person's data?" << endl;
+            cout << "if yes then enter [y] if no enter anything" << endl;
             cin.ignore();
             getline(cin, warning1);
-
-            if ((warning1 == "y") || (warning1 == "Y")){
+            if ((warning1 == "y") || (warning1 == "Y")) {
                 editPersonal_information(Personal_data);    
             }
-            cout<<endl;
+            cout << endl;
             break;
-
-
         case 4:
             // Удаляем человека
             cout << "Do you really want to delete the person's data?"<< endl;
             cout << "if yes then enter [y] if no enter anything"<< endl;
             cin.ignore();
             getline(cin, warning1);
-            
-            if ((warning1 == "y") || (warning1 == "Y")){
+        
+            if ((warning1 == "y") || (warning1 == "Y")) {
                 deletePersonal_information(Personal_data);
             }
-            cout<<endl;
+            cout << endl;
             break;
-
         case 5:
-            cout << "Thanks for using our program"<< endl;
+            cout << "Thanks for using our program" << endl;
             // Выход из программы
             return;
-
         default:
             cout << "wrong action choice!" << endl;
             break;
-
         }
-
     }
-
 }
