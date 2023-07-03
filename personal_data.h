@@ -234,34 +234,37 @@ void addPersonal_information(vector<Personal_information>& Personal_data)
 
     //Получаем имя от пользователя
     cout << "Enter the name: ";
-    cin >> name ;
+    cin.ignore();
+    getline(cin, name);
 
     // Получаем фамилию от пользователя
 
     cout << "Enter the surname: ";
-    cin >> surname;
-
+    cin.ignore();
+    getline(cin, surname);
 
 
 
     cout << "Enter  Country: ";
-
-    cin >> strana;
+    cin.ignore();
+    getline(cin, strana);
 
 
     cout << "Enter  city: ";
-
-    cin >> gorod;
+    cin.ignore();
+    getline(cin, gorod);
 
 
     cout << "Enter  Address (Street_Number): ";
-    cin >> adres;
+    cin.ignore();
+    getline(cin, adres);
 
     cout << "Enter the zip code: ";
     cin >> mail;
 
     cout << "Enter the email: ";
-    cin >> email;
+    cin.ignore();
+    getline(cin, email);
 
     cout << "Enter  phone number: ";
     cin >> phone_number;
