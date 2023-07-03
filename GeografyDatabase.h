@@ -1,10 +1,9 @@
+#pragma once
 #include <iostream>
 
 #include <string>
 
 #include <vector>
-
-#include <cstdlib>
 
 #include <cstdlib>
 
@@ -342,7 +341,7 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
 // Основная функция программы
 
 
-int main() {
+void runGeografy() {
 
     setlocale(LC_ALL, "Russian");
 
@@ -350,11 +349,11 @@ int main() {
 
 
     // ЗДЕСЬ МАССИВ СО ЗНАЧЕНИЯМИ, КОТОРЫЕ БУДУТ СЛУЧАЙНО ПРИСВАИВАТЬСЯ ДЛЯ ПЕРВЫХ ДРУХ ОРГАНИЗАЦИЙ И ГЕНЕРАЦИЯ ЧСЕЛ ДЛЯ ID
-    
-    const string countryes[5] = {"Russian_Empire", "Soviet_Union", "Russia_Federation", "Russian_Republic", "Principality_of_Moscow"};
-    const string cities[5] = { "Moscow", "Vladimir", "Voronezh", "Novosibirsk", "Norilsk"};
+
+    const string countryes[5] = { "Russian_Empire", "Soviet_Union", "Russian_Federation", "Russian_Republic", "Principality_of_Moscow" };
+    const string cities[5] = { "Moscow", "Vladimir", "Voronezh", "Novosibirsk", "Norilsk" };
     const string adress[5] = { "lenin_avenue_20", "43_moscow_street", "5_krasnoznamennaya_street", "87_mukhomorova_street", "81_slivkov_street" };
-    const int indexx[5] = { 666666, 123456, 126758, 838351, 146111};
+    const int indexx[5] = { 666666, 123456, 126758, 838351, 146111 };
 
     int randIndex = rand() % 5; // рандом индекс
     string SelectCountry = countryes[randIndex];
@@ -451,7 +450,7 @@ int main() {
 
             // Выходим из программы
 
-            return 0;
+            return;
 
         default:
 
