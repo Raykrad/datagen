@@ -155,7 +155,6 @@ void addOrganizations_database(vector<Organizations_database>& Organizathions)
 
     cout << "Enter the organizathon's name email: ";
 
-    cin.ignore();
     getline(cin, email);
 
     cout << "Enter the organization's id: ";
@@ -164,7 +163,6 @@ void addOrganizations_database(vector<Organizations_database>& Organizathions)
 
     cout << "Enter the organization's telephon number: ";
 
-    cin.ignore();
     getline(cin, number);
 
 
@@ -241,13 +239,13 @@ void editOrganizations_database(vector<Organizations_database>& Organizathions) 
 
         cout << "Select the property you want to change: " << endl;
 
-        cout << "1 - Organization's name" << endl;
+        cout << "1. Organization's name" << endl;
 
-        cout << "2 - Organization's email" << endl;
+        cout << "2. Organization's email" << endl;
 
-        cout << "3 - Organization's id" << endl;
+        cout << "3. Organization's id" << endl;
 
-        cout << "4 - Postal code of the organization telephon number" << endl;
+        cout << "4. Postal code of the organization telephon number" << endl;
 
         cin >> property;
 
@@ -366,15 +364,15 @@ void Organizathions() {
     while (true) {
 
 
-        cout << endl << "1 - Display information about all data of organizations" << endl;
+        cout << endl << "1. Display information about all data of organizations" << endl;
 
-        cout << "2 - Add an organization" << endl;
+        cout << "2. Add an organization" << endl;
 
-        cout << "3 - Delete an organization" << endl;
+        cout << "3. Delete an organization" << endl;
 
-        cout << "4 - Change the parameters of the organization" << endl;
+        cout << "4. Change the parameters of the organization" << endl;
 
-        cout << "0 - Exit" << endl;
+        cout << "5. Exit" << endl;
 
         cout << "Select an action: ";
 
@@ -424,7 +422,7 @@ void Organizathions() {
 
             break;
 
-        case 0:
+        case 5:
 
 
             return;
