@@ -16,9 +16,9 @@ private:
     string A_STRANA;     // СТРАНА
     string A_GOROD;      // ГОРОД
     string A_ADRES;      // АДРЕС
-    int A_MAIL;          // ПОЧТОВЫЙ КОД
+    string A_MAIL;          // ПОЧТОВЫЙ КОД
     string A_EMAIL;      // ЕЛЕКТРОННАЯ ПОЧТА
-    int A_PHONE_NUMBER;  // НОМЕР ТЕЛЕФОНА
+    string A_PHONE_NUMBER;  // НОМЕР ТЕЛЕФОНА
 
 public:
 // Конструктор по умолчанию
@@ -30,15 +30,15 @@ public:
         this->A_STRANA = "";
         this->A_GOROD = "";
         this->A_ADRES = "";
-        this->A_MAIL = 0;
+        this->A_MAIL = "";
         this->A_EMAIL = "";
-        this->A_PHONE_NUMBER = 0;
+        this->A_PHONE_NUMBER = "";
 
     }
 
 // Параметры
 
-    Personal_information(string name,string surname, string strana, string gorod, string adres, int mail, string email, int phone_number) {
+    Personal_information(string name, string surname, string strana, string gorod, string adres, string mail, string email, string phone_number) {
 
         this->A_NAME = name;
         this->A_SURNAME = surname;
@@ -94,7 +94,7 @@ public:
         this->A_ADRES = adres;
     }
 
-    void setA_MAIL(int mail) {
+    void setA_MAIL(string mail) {
         this->A_MAIL = mail;
     }
 
@@ -102,7 +102,7 @@ public:
         this->A_EMAIL = email;
     }
 
-    void setA_PHONE_NUMBER(int phone_number) {
+    void setA_PHONE_NUMBER(string phone_number) {
         this->A_PHONE_NUMBER = phone_number;
     }
 
@@ -130,7 +130,7 @@ public:
         return this->A_ADRES;
     }
 
-    int getA_MAIL() {
+    string getA_MAIL() {
         return this->A_MAIL;
     }
 
@@ -138,7 +138,7 @@ public:
         return this->A_EMAIL;
     }
 
-    int getA_PHONE_NUMBER() {
+    string getA_PHONE_NUMBER() {
         return this->A_PHONE_NUMBER;
     }
 
@@ -166,8 +166,7 @@ public:
 void addPersonal_information(vector<Personal_information>& Personal_data)
 {
 
-    string name, surname, strana, gorod, adres, email;
-    int mail, phone_number;
+    string name, surname, strana, gorod, adres, email, mail, phone_number;
 
 //Получаем данные от пользователя нужные для добовление человека
     cout << "Enter the name: ";
@@ -191,14 +190,16 @@ void addPersonal_information(vector<Personal_information>& Personal_data)
     getline(cin, adres);
 
     cout << "Enter the mail code: ";
-    cin >> mail;
+    cin.ignore();
+    getline(cin, mail);
 
     cout << "Enter the email: ";
     cin.ignore();
     getline(cin, email);
 
     cout << "Enter  phone number: ";
-    cin >> phone_number;
+    cin.ignore();
+    getline(cin, phone_number);
 
 
 
@@ -255,7 +256,7 @@ void deletePersonal_information(vector<Personal_information>& Personal_data) {
 
 void editPersonal_information(vector<Personal_information>& Personal_data) {
 
-    int index, property, newValue;
+    int index, property;
     string NewValueString;
 
 // Выводим список персональных данных человека
@@ -325,8 +326,8 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
 
         case 6:
             cout << "Enter the mail code of the person: ";
-            cin >> newValue;
-            Personal_data[index].setA_MAIL(newValue);
+            cin >> NewValueString;
+            Personal_data[index].setA_MAIL(NewValueString);
             break;
 
         case 7:
@@ -337,8 +338,8 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
 
         case 8:
             cout << "Enter the new phone number of the person: ";
-            cin >> newValue;
-            Personal_data[index].setA_PHONE_NUMBER(newValue);
+            cin >> NewValueString;
+            Personal_data[index].setA_PHONE_NUMBER(NewValueString);
             break;
        
         default:
@@ -369,12 +370,12 @@ void runPersonal() {
 // ЗДЕСЬ МАССИВ С ДАННЫМИ
     const string names[5] = {"Egor", "Ilya", "Denis", "Vadim", "Firuz"};
     const string surnames[5] = {"Kalyuzhny","Slivkov", "Miheev", "Shmarin", "Safarzoda" };
-    const string countryes[5] = {"Noth_empire", "United_Union", "Russia_Federation", "Border_Republic", "Great_Voronezh"};
+    const string countryes[5] = {"Noth_empire", "United_Union", "Russian_Federation", "Border_Republic", "Great_Voronezh"};
     const string cities[5] = { "Moscow", "Uryupinsk", "Voronezh", "New_Magadan", "Pod_kvasinsk"};
     const string adress[5] = { "Krasna_grad_43", "Lenina_122", "Kozia_453", "Gribkova_88", "New_beer_strit_1561" };
-    const int indexx[5] = { 345983, 165446, 576567, 354544, 924824};
+    const string indexx[5] = { "345983", "165446", "576567", "354544", "924824"};
     const string emails[5] = {"kdlnfsknl@gmail.ru","seisfjisjefisjafa@mail.com","fsfdskdfks@beep.su","dsfksdfksfs@hehe.gr","walkingtotheriver24@odd.ti"};
-    const int phone_numbers[5] = {2423842, 234432424, 1234567890 , 885553535 , 7654321 };
+    const string phone_numbers[5] = {"2423842", "234432424", "1234567890" , "88005553535" , "7654321" };
 
 
     int randIndex = rand() % 5; // случайный индекс
@@ -383,9 +384,9 @@ void runPersonal() {
     string SelectCountry = countryes[randIndex];
     string SelectCities = cities[randIndex];
     string SelectAdress = adress[randIndex];
-    int Selectindexx = indexx[randIndex];
+    string Selectindexx = indexx[randIndex];
     string SelectEmail = emails[randIndex];
-    int SelectPhone_number = phone_numbers[randIndex];
+    string SelectPhone_number = phone_numbers[randIndex];
 
 // Создаем два человека со свойствами
 
@@ -398,9 +399,9 @@ void runPersonal() {
     string SelectCountry2 = countryes[randIndex2];
     string SelectCities2 = cities[randIndex2];
     string SelectAdress2 = adress[randIndex2];
-    int Selectindexx2 = indexx[randIndex2];
+    string Selectindexx2 = indexx[randIndex2];
     string SelectEmail2 = emails[randIndex2];
-    int SelectPhone_number2 = phone_numbers[randIndex2];
+    string SelectPhone_number2 = phone_numbers[randIndex2];
 
     Personal_information Personal_information2(SelectName2, SelectSurname2, SelectCountry2, SelectCities2, SelectAdress2, Selectindexx2, SelectEmail2, SelectPhone_number2);
 
@@ -444,8 +445,18 @@ void runPersonal() {
 
         case 3:
             // Изменяем свойства человека
-            editPersonal_information(Personal_data);
+            
+            cout << "Do you really want to edit the person's data?"<< endl;
+            cout << "if yes then enter [y] if no enter anything"<< endl;
+            cin.ignore();
+            getline(cin, warning1);
+
+            if ((warning1 == "y") || (warning1 == "Y")){
+                editPersonal_information(Personal_data);    
+            }
+            cout<<endl;
             break;
+
 
         case 4:
             // Удаляем человека
@@ -453,9 +464,11 @@ void runPersonal() {
             cout << "if yes then enter [y] if no enter anything"<< endl;
             cin.ignore();
             getline(cin, warning1);
+            
             if ((warning1 == "y") || (warning1 == "Y")){
                 deletePersonal_information(Personal_data);
             }
+            cout<<endl;
             break;
 
         case 0:
