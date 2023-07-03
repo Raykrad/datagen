@@ -176,10 +176,10 @@ void addPersonal_information(vector<Personal_information>& Personal_data)
     cout << "Enter the surname: ";
     getline(cin, surname);
 
-    cout << "Enter  Country: ";
+    cout << "Enter Country: ";
     getline(cin, strana);
 
-    cout << "Enter  city: ";
+    cout << "Enter city: ";
     getline(cin, gorod);
 
     cout << "Enter street and house number: ";
@@ -191,7 +191,7 @@ void addPersonal_information(vector<Personal_information>& Personal_data)
     cout << "Enter the email: ";
     getline(cin, email);
 
-    cout << "Enter  phone number: ";
+    cout << "Enter phone number: ";
     getline(cin, phone_number);
 
 
