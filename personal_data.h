@@ -281,14 +281,14 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
 
         cout << "Select the property you want to change: " << endl;
 
-        cout << "1 - person's name" << endl;
-        cout << "2 - person's surname" << endl;
-        cout << "3 - person's country" << endl;
-        cout << "4 - person's city" << endl;
-        cout << "5 - person's address" << endl;
-        cout << "6 - person's mail cod" << endl;
-        cout << "7 - person's email" << endl;
-        cout << "8 - person's phone number" << endl;
+        cout << "1. person's name" << endl;
+        cout << "2. person's surname" << endl;
+        cout << "3. person's country" << endl;
+        cout << "4. person's city" << endl;
+        cout << "5. person's address" << endl;
+        cout << "6. person's mail cod" << endl;
+        cout << "7. person's email" << endl;
+        cout << "8. person's phone number" << endl;
 
         cin >> property;
 
@@ -415,11 +415,11 @@ void runPersonal() {
     while (true) {
 
         // Вывод меню
-        cout << endl << "1 - Display information about all personal data of persons" << endl;
-        cout << "2 - add people" << endl;
-        cout << "3 - change personal data" << endl;
-        cout << "4 - delete people" << endl;
-        cout << "0 - exit" << endl;
+        cout << endl << "1. Display information about all personal data of persons" << endl;
+        cout << "2. add people" << endl;
+        cout << "3. change personal data" << endl;
+        cout << "4. delete people" << endl;
+        cout << "5. exit" << endl;
         cout << "Select an action: ";
         cin >> choice;
         cout << "\n";
@@ -471,8 +471,8 @@ void runPersonal() {
             cout<<endl;
             break;
 
-        case 0:
-            cout << "Thanks for using our program";
+        case 5:
+            cout << "Thanks for using our program"<< endl;
             // Выход из программы
             return;
 
