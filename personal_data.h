@@ -2,15 +2,11 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
-
 using namespace std;
 
 // Класс "персональные данные"
-
 class Personal_information {
-
 private:
-
     string A_NAME;       //ИМЯ
     string A_SURNAME;    // ФАМИЛИЯ
     string A_STRANA;     // СТРАНА
