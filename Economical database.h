@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #pragma once
 #include <vector>
 #include <string>
@@ -209,8 +210,9 @@ class EconomicalDate
 			if ((cases>= 0) && (cases < EcoDate.size()))
 			{
 				cout <<"\n Enter new company name or 0 if you do not want to change it"<<endl;
-				cin>>newName;
-				if (newRev != 0 ) EcoDate[cases].setCompanyName(newName);
+				while (cin.get() != '\n');
+				getline(cin, newName);
+				if (newName != "0" ) EcoDate[cases].setCompanyName(newName);
 
 				cout <<"\n Enter new revenue or 0 if you do not want to change it"<<endl;
 				cin>>newRev;
