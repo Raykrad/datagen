@@ -158,30 +158,29 @@ void addGeograf_organizations(vector<Geograf_organizations>& Geografies)
 
     cout << "Enter the organization's Country: ";
 
-    cin >> strana;
-
-    // Здесь бы проверку на значение сделать
+    cin.ignore();
+    getline(cin, strana);
 
 
     cout << "Enter the organization's city: ";
 
-    cin >> gorod;
 
-    // Здесь бы проверку на значение сделать
+
+    cin.ignore();
+    getline(cin, gorod);
 
 
     cout << "Enter the organization's Address (Street_Number): ";
 
-    cin >> adres;
-
-    // Здесь бы проверку на значение сделать
+ 
+    cin.ignore();
+    getline(cin, adres);
 
 
     cout << "Enter the zip code: ";
 
+
     cin >> pochta;
-
-
 
     // Создаем новый объект Geograf_organizations на основе введенных данных и добавляем его в массив
 
@@ -232,8 +231,6 @@ void deleteGeograf_organizations(vector<Geograf_organizations>& Geografies) {
 
 }
 
-
-
 // Функция для изменения свойства выбранной пользователем организации на новое значение
 
 void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
@@ -280,7 +277,8 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
 
             cout << "Enter the new country of the organization: ";
 
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
 
             Geografies[index].setA_STRANA(NewValueString);
 
@@ -291,7 +289,8 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
 
             cout << "Enter the organization's new city: ";
 
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin, NewValueString);
 
             Geografies[index].setA_GOROD(NewValueString);
 
@@ -301,7 +300,8 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
 
             cout << "Enter the new address of the organization (street_number): ";
 
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin, NewValueString);
 
             Geografies[index].setA_ADRES(NewValueString);
 
@@ -312,7 +312,6 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
             cout << "Enter the zip code: ";
 
             cin >> newValue;
-
 
             Geografies[index].setA_POCHTA(newValue);
 
@@ -350,9 +349,9 @@ void runGeografy() {
 
     // ЗДЕСЬ МАССИВ СО ЗНАЧЕНИЯМИ, КОТОРЫЕ БУДУТ СЛУЧАЙНО ПРИСВАИВАТЬСЯ ДЛЯ ПЕРВЫХ ДРУХ ОРГАНИЗАЦИЙ И ГЕНЕРАЦИЯ ЧСЕЛ ДЛЯ ID
 
-    const string countryes[5] = { "Russian_Empire", "Soviet_Union", "Russian_Federation", "Russian_Republic", "Principality_of_Moscow" };
+    const string countryes[5] = { "Russian Empire", "Soviet Union", "Russian Federation", "Russian Republic", "Principality of Moscow" };
     const string cities[5] = { "Moscow", "Vladimir", "Voronezh", "Novosibirsk", "Norilsk" };
-    const string adress[5] = { "lenin_avenue_20", "43_moscow_street", "5_krasnoznamennaya_street", "87_mukhomorova_street", "81_slivkov_street" };
+    const string adress[5] = { "Lenin avenue 20", "43 Moscow street", "5 Krasnoznamennaya street", "87 Sukhomorova street", "81 Slivkov street" };
     const int indexx[5] = { 666666, 123456, 126758, 838351, 146111 };
 
     int randIndex = rand() % 5; // рандом индекс
@@ -401,8 +400,6 @@ void runGeografy() {
 
         cout << "\n";
 
-
-
         switch (choice) {
 
         case 1:
@@ -424,7 +421,6 @@ void runGeografy() {
         case 2:
 
             // Добавляем новую организацию
-
 
             addGeograf_organizations(Geografies);
 
