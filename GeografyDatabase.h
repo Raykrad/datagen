@@ -7,6 +7,8 @@
 
 #include <cstdlib>
 
+#include <ctime>
+
 using namespace std;
 
 // Класс "География организаций"
@@ -342,19 +344,17 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
 
 void runGeografy() {
 
-    setlocale(LC_ALL, "Russian");
+    srand(time(0));
 
     vector<Geograf_organizations> Geografies;
 
-
     // ЗДЕСЬ МАССИВ СО ЗНАЧЕНИЯМИ, КОТОРЫЕ БУДУТ СЛУЧАЙНО ПРИСВАИВАТЬСЯ ДЛЯ ПЕРВЫХ ДРУХ ОРГАНИЗАЦИЙ И ГЕНЕРАЦИЯ ЧСЕЛ ДЛЯ ID
 
-    const string countryes[5] = { "Russian Empire", "Soviet Union", "Russian Federation", "Russian Republic", "Principality of Moscow" };
-    const string cities[5] = { "Moscow", "Vladimir", "Voronezh", "Novosibirsk", "Norilsk" };
-    const string adress[5] = { "Lenin avenue 20", "43 Moscow street", "5 Krasnoznamennaya street", "87 Sukhomorova street", "81 Slivkov street" };
-    const int indexx[5] = { 666666, 123456, 126758, 838351, 146111 };
-
-    int randIndex = rand() % 5; // рандом индекс
+    const string countryes[10] = { "Russian Federation", "Germany", "France", "Poland", "Belarus", "Finland", "Denmark", "Italy", "China", "Japan"};
+    const string cities[10] = { "Moscow", "Berlin", "Paris", "Krakow", "Minsk", "Helsinki", "Copenhagen", "Rome", "Nankin", "Tokio"};
+    const string adress[10] = { "Lenin avenue 20", "Unter den Linden 19", "Champs - Elysees 66", "Ulica Puławska 30", "Independence Avenue 40", "Aleksanterinkatu 50", "Nyhavn 17", "Via del Corso 80", "Changanjie 1", "Ginza 7"};
+    const int indexx[10] = { 666666, 123456, 126758, 838351, 146111, 198755, 375734, 5235123, 645375, 696722 };
+    int randIndex = rand() % 10; // рандом индекс
     string SelectCountry = countryes[randIndex];
     string SelectCities = cities[randIndex];
     string SelectAdress = adress[randIndex];
@@ -364,7 +364,10 @@ void runGeografy() {
 
     Geograf_organizations Geograf_organizations1(SelectCountry, SelectCities, SelectAdress, Selectindexx);
 
-    int randIndex2 = rand() % 5; // рандом индекс заново, для второй организации
+    int randIndex2 = rand() % 10; // рандом индекс заново, для второй организации
+    while (randIndex2 == randIndex) {
+        int randIndex2 = rand() % 10;
+    }
 
     string SelectCountry2 = countryes[randIndex2];
     string SelectCities2 = cities[randIndex2];
