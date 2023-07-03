@@ -63,21 +63,28 @@ private: // функции в привате
 		string name;
 		int index = rand() % 7 + 1;
 		switch (index) {
-			case 1:  name = founderNameGeneration();
-				break;
-			case 2:  name = brandNameGeneration();
-				break;
-			case 3:  name = abbreviationNameGeneration();
-				break;
-			case 4:  name = FannyNameGeneration();
-				break;
-			case 5:  name = founderNameGeneration() +" & " + founderNameGeneration();
-				break;
-			case 6:  name = founderNameGeneration() + " " + brandNameGeneration();
-				break;
-			case 7:  name = abbreviationNameGeneration() + " " + founderNameGeneration() + " " + brandNameGeneration();
-				break;
-	     	   }
+		case 1:  
+			name = founderNameGeneration();
+			break;
+		case 2:  
+			name = brandNameGeneration();
+			break;
+		case 3:  
+			name = abbreviationNameGeneration();
+			break;
+		case 4:  
+			name = FannyNameGeneration();
+			break;
+		case 5:  
+			name = founderNameGeneration() +" & " + founderNameGeneration();
+			break;
+		case 6:  
+			name = founderNameGeneration() + " " + brandNameGeneration();
+			break;
+		case 7:  
+			name = abbreviationNameGeneration() + " " + founderNameGeneration() + " " + brandNameGeneration();
+			break;
+	     	}
 		name = name + " " + attachmentGeneration();
         	return name; // случайное число от 100 000 до 10 100 000
        	}
@@ -270,19 +277,19 @@ public:
             		switch (cases) {
             		case 1:
                 		ShowEconomicalDate(EcoDate);
-               	 	break;
+               	 		break;
             		case 2:
                			FullGenerate(EcoDate);
-               	 	break;
+               	 		break;
             		case 3:
                 		EnterEconomicalDate(EcoDate);
-                	break;
+                		break;
             		case 4:
                 		EditEconomicalDate(EcoDate);
-                	break;
+                		break;
             		case 5:
                 		DeleteEconomicalDate(EcoDate);
-                	break;
+                		break;
             		case 6:
                 		cout<<"Goodbye!"<<endl;
                 		break;
