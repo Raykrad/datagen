@@ -92,10 +92,10 @@ void addOrganizations_database(vector<Organizations_database>& Organizathions) {
     getline(cin, name);
     cout << "Enter the organizathon's name email: ";
     getline(cin, email);
-    cout << "Enter the organization's id: ";
-    cin >> id;
     cout << "Enter the organization's telephon number: ";
     getline(cin, number);
+    cout << "Enter the organization's id: ";
+    cin >> id;
     // Создаем новый объект Organizations_database на основе введенных данных и добавляем его в массив
     Organizathions.push_back(Organizations_database(name, email, id, number));
     cout << "The organization has been added successfully!" << endl;
