@@ -174,31 +174,24 @@ void addPersonal_information(vector<Personal_information>& Personal_data)
     getline(cin, name);
 
     cout << "Enter the surname: ";
-    cin.ignore();
     getline(cin, surname);
 
     cout << "Enter  Country: ";
-    cin.ignore();
     getline(cin, strana);
 
     cout << "Enter  city: ";
-    cin.ignore();
     getline(cin, gorod);
 
     cout << "Enter street and house number: ";
-    cin.ignore();
     getline(cin, adres);
 
     cout << "Enter the mail code: ";
-    cin.ignore();
     getline(cin, mail);
 
     cout << "Enter the email: ";
-    cin.ignore();
     getline(cin, email);
 
     cout << "Enter  phone number: ";
-    cin.ignore();
     getline(cin, phone_number);
 
 
