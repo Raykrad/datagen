@@ -133,7 +133,7 @@ public:
 
     void show() {
 
-        cout << "Organization's country: " << this->A_STRANA << endl;
+        cout << "\nOrganization's country: " << this->A_STRANA << endl;
 
         cout << "Organization's city: " << this->A_GOROD << endl;
 
