@@ -9,9 +9,7 @@ using namespace std;
 // Класс "География организаций"
 class Geograf_organizations {
 private:
-    string A_STRANA; // СТРАНА!
-    string A_GOROD; // ГОРОД!
-    string A_ADRES; // АДРЕС!
+    string A_STRANA, A_GOROD, A_ADRES; // СТРАНА, ГОРОД, АДРЕС!
     int A_POCHTA; // ПОЧТА!
 
 public:
