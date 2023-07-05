@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "authorization.h"
 #include "personal_data.h"
 #include "Organizathion.h"
@@ -12,7 +12,7 @@ int main() {
     user.authorizationMenu();
     int cases = 0;
     while (cases != 5) {
-        cout << "\nMenu" << endl;
+        cout << "\n<<Menu>>" << endl;
         cout << "\nPossible actions:" << endl;
         cout << "\n1. Personal data;\n \n2. Geographical data;\n \n3. Organizational data;\n \n4. Financial data;\n \n5. Exit." << endl;
         cout << "Enter the desired action number: ";
