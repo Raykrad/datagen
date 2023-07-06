@@ -39,7 +39,7 @@ public:
 
     // Деструктор
     ~Geograf_organizations() { }
-   
+
     // Методы set
     void setA_STRANA(string strana) {
         this->A_STRANA = strana;
@@ -117,7 +117,7 @@ void deleteGeograf_organizations(vector<Geograf_organizations>& Geografies) {
     if (index >= 0 && index < Geografies.size()) {
         Geografies.erase(Geografies.begin() + index);
         cout << "The organization has been successfully deleted!" << endl;
-    } 
+    }
     else {
         cout << "Invalid organization number!" << endl;
     }
@@ -148,7 +148,7 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
         case 1:
             cout << "Enter the new country of the organization: ";
             cin.ignore();
-            getline(cin,NewValueString);
+            getline(cin, NewValueString);
             Geografies[index].setA_STRANA(NewValueString);
             break;
         case 2:
@@ -178,36 +178,90 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
         cout << "Invalid organization number!" << endl;
     }
 }
-
-// Основная функция программы
-void runGeografy() {
-    srand(time(0));
-    vector<Geograf_organizations> Geografies;
-    // ЗДЕСЬ МАССИВ СО ЗНАЧЕНИЯМИ, КОТОРЫЕ БУДУТ СЛУЧАЙНО ПРИСВАИВАТЬСЯ ДЛЯ ПЕРВЫХ ДРУХ ОРГАНИЗАЦИЙ И ГЕНЕРАЦИЯ ЧСЕЛ ДЛЯ ID
-    const string countryes[10] = { "Russian Federation", "Germany", "France", "Poland", "Belarus", "Finland", "Denmark", "Italy", "China", "Japan" };
-    const string cities[10] = { "Moscow", "Berlin", "Paris", "Krakow", "Minsk", "Helsinki", "Copenhagen", "Rome", "Nankin", "Tokio" };
-    const string adress[10] = { "Lenin avenue 20", "Unter den Linden 19", "Champs - Elysees 66", "Ulica Puławska 30", "Independence Avenue 40", "Aleksanterinkatu 50", "Nyhavn 17", "Via del Corso 80", "Changanjie 1", "Ginza 7" };
-    const int indexx[10] = { 666666, 123456, 126758, 838351, 146111, 198755, 375734, 5235123, 645375, 696722 };
-    int randIndex = rand() % 10; // рандом индекс
+void GenerateOrganization(vector<Geograf_organizations>& Geografies) {
+    vector<Geograf_organizations> Geografies1;
+    // ЗДЕСЬ МАССИВ СО ЗНАЧЕНИЯМИ, КОТОРЫЕ БУДУТ СЛУЧАЙНО ПРИСВАИВАТЬСЯ ДЛЯ ПЕРВЫХ ДРУХ ОРГАНИЗАЦИЙ И ГЕНЕРАЦИЯ ЧИСЕЛ ДЛЯ ID
+    const string countryes[] = {
+     "Russian Federation", "Germany", "France", "Poland", "Belarus", "Finland", "Denmark", "Italy", "China", "Japan",
+     "Canada", "Australia", "Brazil", "India", "Mexico", "South Korea", "Spain", "Netherlands", "Switzerland", "Sweden",
+     "United States", "United Kingdom", "Austria", "Norway", "Portugal", "Turkey", "Argentina", "Egypt", "Greece", "Israel",
+     "Ireland", "Singapore", "Thailand", "New Zealand", "Chile", "Colombia", "Indonesia", "Malaysia", "Peru", "Philippines",
+     "Saudi Arabia", "United Arab Emirates", "Kuwait", "Qatar", "Oman", "Bahrain", "Jordan", "Lebanon", "Morocco", "Tunisia",
+     "Algeria", "Angola", "Bulgaria", "Czech Republic", "Hungary", "Iceland", "Romania", "Slovakia", "South Africa", "Ukraine", 
+     "United States", "United Kingdom", "Spain", "Brazil", "Canada", "Australia", "India", "South Korea", "Mexico", "Netherlands", 
+     "Switzerland", "Norway", "Sweden", "Portugal", "Argentina", "Turkey", "Greece", "Egypt", "Israel", "Ireland", "Austria", "Czech Republic", 
+     "Hungary", "Indonesia", "Malaysia", "Thailand", "Vietnam", "Philippines", "Singapore", "New Zealand", "South Africa", "Kenya", "Nigeria", 
+     "Ghana", "Morocco", "Saudi Arabia", "United Arab Emirates", "Qatar", "Chile", "Colombia", "Peru", "Ecuador", "Venezuela", "Bolivia", 
+     "Cuba", "Puerto Rico", "Dominican Republic", "Costa Rica", "Panama", "Honduras", "Guatemala", "El Salvador", "Nicaragua", "Nepal", "Pakistan", 
+     "Bangladesh", "Sri Lanka", "Myanmar", "Mongolia", "Kazakhstan", "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Iran", "Iraq", "Syria", 
+     "Afghanistan", "Pakistan", "Lebanon", "Jordan", "Kuwait", "Oman", "Yemen", "Ethiopia", "Ghana", "Cameroon", "Ivory Coast", "Senegal", "Sudan", "Tanzania", 
+     "Uganda", "Zambia", "Zimbabwe", "Botswana", "Namibia", "Angola", "Mozambique", "Malawi", "Madagascar", "Mauritius", "Mali", "Niger", "Benin", "Togo", "Burkina Faso", 
+     "Central African Republic", "Sierra Leone", "Liberia", "Guinea", "Guinea-Bissau", "Gambia", "Equatorial Guinea" };
+    const string cities[] = {
+     "Moscow", "Berlin", "Paris", "Warsaw", "Minsk", "Helsinki", "Copenhagen", "Rome", "Beijing", "Tokyo",
+     "Ottawa", "Sydney", "Brasilia", "New Delhi", "Mexico City", "Seoul", "Madrid", "Amsterdam", "Zurich", "Stockholm",
+     "Washington, D.C.", "London", "Vienna", "Oslo", "Lisbon", "Ankara", "Buenos Aires", "Cairo", "Athens", "Jerusalem",
+     "Dublin", "Singapore", "Bangkok", "Wellington", "Santiago", "Bogota", "Jakarta", "Kuala Lumpur", "Lima", "Manila",
+     "Riyadh", "Dubai", "Kuwait City", "Doha", "Muscat", "Manama", "Amman", "Beirut", "Rabat", "Tunis",
+     "Algiers", "Luanda", "Sofia", "Prague", "Budapest", "Reykjavik", "Bucharest", "Bratislava", "Cape Town", "Kyiv",
+     "New York", "London", "Barcelona", "Sao Paulo", "Toronto", "Sydney", "Mumbai", "Seoul", "Mexico City", "Amsterdam",
+     "Zurich", "Oslo", "Stockholm", "Lisbon", "Buenos Aires", "Ankara", "Athens", "Cairo", "Jerusalem", "Dublin",
+     "Vienna", "Prague", "Budapest", "Jakarta", "Kuala Lumpur", "Bangkok", "Hanoi", "Manila", "Singapore", "Wellington",
+     "Cape Town", "Nairobi", "Lagos", "Accra", "Rabat", "Riyadh", "Dubai", "Doha", "Santiago", "Bogota", "Lima",
+     "Quito", "Caracas", "La Paz", "Havana", "San Juan", "Santo Domingo", "San Jose", "Panama City", "Tegucigalpa",
+     "Guatemala City", "San Salvador", "Managua", "Kathmandu", "Islamabad", "Dhaka", "Colombo", "Yangon", "Ulaanbaatar",
+     "Astana", "Tashkent", "Dushanbe", "Bishkek", "Ashgabat", "Tehran", "Baghdad", "Damascus", "Kabul", "Islamabad",
+     "Beirut", "Amman", "Kuwait City", "Muscat", "Sana'a", "Addis Ababa", "Accra", "Yaounde", "Abidjan", "Dakar",
+     "Khartoum", "Dar es Salaam", "Kampala", "Lusaka", "Harare", "Gaborone", "Windhoek", "Luanda", "Maputo", "Lilongwe",
+     "Antananarivo", "Port Louis", "Bamako", "Niamey", "Cotonou", "Lome", "Ouagadougou", "Bangui", "Freetown", "Monrovia",
+     "Conakry", "Bissau", "Banjul", "Malabo"
+    };
+    const string adress[] = {
+     "Tverskaya Street", "Unter den Linden", "Champs-Elysees", "Nowy Swiat", "Nemiga Street", "Mannerheimintie", "Stroget", "Via del Corso", "Wangfujing Street", "Ginza",
+     "Wellington Street", "George Street", "Esplanada dos Ministerios", "Janpath", "Paseo de la Reforma", "Gangnam-daero", "Gran Via", "Dam Square", "Bahnhofstrasse", "Drottinggatan",
+     "Pennsylvania Avenue", "Oxford Street", "Ringstrasse", "Karl Johans Gate", "Avenida da Liberdade", "Ataturk Boulevard", "Avenida 9 de Julio", "Sharia Al Tahrir", "Syngrou Avenue", "Jaffa Street",
+     "Grafton Street", "Orchard Road", "Thanon Sukhumvit", "Lambton Quay", "Avenida Libertador", "Carrera 7", "Jalan Thamrin", "Jalan Bukit Bintang", "Avenida 28 de Julio", "Roxas Boulevard",
+     "King Fahd Road", "Sheikh Zayed Road", "Al Soor Street", "Corniche Street", "Sultan Qaboos Highway", "Government Avenue", "Abdali Boulevard", "Beirut Coastal Road", "Mohammed V Avenue", "Boulevard Habib Bourguiba",
+     "Abdelkader Street", "Avenida Salvador Allende", "Vitosha Boulevard", "Wenceslas Square", "Andrassy Avenue", "Laugavegur", "Calea Victoriei", "Námestie SNP", "Long Street", "Khreshchatyk Street",
+     "Fifth Avenue", "Baker Street", "Las Ramblas", "Avenida Paulista", "Queen Street", "George Street", "Linking Road", "Gangnam-gu Keywon Street", "Paseo de la Reforma", "Rembrandtplein",
+     "Kungstradgarden", "Rossio Square", "Avenida de Mayo", "Cibubur Junction", "Jalan Bukit Bintang", "Thanon Sukhumvit", "Tay Ho District", "Escolta Street", "Scotts Road", "Lambton Quay",
+     "Adderley Street", "University Way", "Accra Mall", "Kanda Highway", "Medina Road", "King Fahd Road", "Jumeirah Beach Road", "Al Matar Street", "Bernardo O'Higgins Avenue", "Avenida El Sol",
+     "Plaza de San Francisco", "Avenida Ashford", "Avenida Juan Pablo Duarte", "Calle 6A", "Avenida Balboa", "Avenida Lincoln", "Avenida Central", "Calle del Sol", "Calle del Duque",
+     "Calle del Prado", "Kathmandu Durbar Square", "Islamabad Expressway", "Kazi Nazrul Islam Avenue", "Galle Road", "Strand Road", "Sukhbaatar Square", "Abay Avenue", "Mirzo Ulugbek Street", "Dushanbe City Boulevard",
+     "Chui Avenue", "Archabil Avenue", "Valiasr Street", "Al Rasheed Street", "Mar Mousa Street", "Darul Aman Road", "Kabul-Jalalabad Road", "Imran Khan Avenue", "Hamdan bin Mohammed Street", "Sana'a University Street",
+     "Churchill Avenue", "Independence Avenue", "Yaounde One Way Street", "Abidjan Boulevard", "Independence Avenue", "Bagamoyo Road", "Kampala Road", "Freedom Way", "Samora Machel Avenue", "Botswana A1 Highway",
+     "Independence Avenue", "Avenida 25 de Setembro", "Robert Mugabe Avenue", "Independence Avenue", "Antananarivo Avenue", "Sir William Newton Street", "Rue Mohammed V", "Avenue de la Republique", "Boulevard 13 Janvier", 
+     "Avenue de l'independance", "Avenue de la Liberation", "Banjul Highway", "Avenida de Guinea Ecuatorial"
+    };
+    const int indexx[100] = {
+     666666, 123456, 126758, 838351, 146111, 198755, 375734, 5235123, 645375, 696722,
+     201932, 435262, 687468, 235970, 873656, 102983, 497566, 675840, 109573, 567813,
+     908721, 453897, 128797, 385627, 765932, 989281, 203588, 389074, 746090, 428507,
+     721082, 372624, 928384, 148215, 290386, 758312, 966243, 173405, 586931, 493857,
+     620379, 184750, 936580, 403971, 857398, 678120, 238647, 410930, 856328, 726374,
+     638470, 902734, 147908, 527117, 908293, 123499, 298139, 795237, 345212, 830498,
+     360134, 875939, 176434, 691092, 233983, 875910, 871263, 287520, 620389, 193857,
+     564290, 765912, 342163, 702832, 982726, 491087, 902384, 841263, 238758, 586731,
+     239687, 593871, 957130, 473819, 682759, 689273, 457610, 438900, 775832, 914627,
+     165398, 677234, 903586, 456871, 687439, 358340, 989214, 264739, 786983, 905832};
+    int randIndex = rand() % 100; // рандом индекс
     string SelectCountry = countryes[randIndex];
     string SelectCities = cities[randIndex];
     string SelectAdress = adress[randIndex];
     int Selectindexx = indexx[randIndex];
-    // Создаем две организации со свойствами
-    
-    Geograf_organizations Geograf_organizations1(SelectCountry, SelectCities, SelectAdress, Selectindexx);
-    int randIndex2 = rand() % 10; // рандом индекс заново, для второй организации
-    while (randIndex2 == randIndex) {
-        int randIndex2 = rand() % 10;
-    }
-    string SelectCountry2 = countryes[randIndex2];
-    string SelectCities2 = cities[randIndex2];
-    string SelectAdress2 = adress[randIndex2];
-    int Selectindexx2 = indexx[randIndex2];
-    
-    Geograf_organizations Geograf_organizations2(SelectCountry2, SelectCities2, SelectAdress2, Selectindexx2);
-    Geografies.push_back(Geograf_organizations1);
-    Geografies.push_back(Geograf_organizations2);
+    Geograf_organizations Geograf_organizations(SelectCountry, SelectCities, SelectAdress, Selectindexx);
+    Geografies.push_back(Geograf_organizations);
+    cout << "\nThe organization has been successfully generated!" << endl;
+}
+
+
+
+
+
+// Основная функция программы
+void runGeografy() {
+    srand(time(0));
+    vector<Geograf_organizations> Geografies1;
     int choice;
     while (true) {
         // Выводим меню
@@ -215,33 +269,38 @@ void runGeografy() {
         cout << "\n2. Add an organization" << endl;
         cout << "\n3. Delete an organization" << endl;
         cout << "\n4. Change the geographical parameters of the organization" << endl;
-        cout << "\n5. Exit" << endl;
+        cout << "\n5. Generate one organization" << endl;
+        cout << "\n6. Exit" << endl;
         cout << "\nSelect an action: ";
         cin >> choice;
         cout << "\n";
         switch (choice) {
         case 1:
             // Выводим информацию обо всех географических данных организаций
-            for (int i = 0; i < Geografies.size(); i++) {
+            for (int i = 0; i < Geografies1.size(); i++) {
                 cout << "#" << i << ". ";
-                Geografies[i].show();
+                Geografies1[i].show();
                 cout << endl;
             }
             break;
         case 2:
             // Добавляем новую организацию
-            addGeograf_organizations(Geografies);
+            addGeograf_organizations(Geografies1);
             break;
 
         case 3:
             // Удаляем организацию
-            deleteGeograf_organizations(Geografies);
+            deleteGeograf_organizations(Geografies1);
             break;
         case 4:
             // Изменяем свойства организации
-            editGeograf_organizations(Geografies);
+            editGeograf_organizations(Geografies1);
             break;
         case 5:
+            // Сгенерировать организацию с географическими данными.
+            GenerateOrganization(Geografies1);
+            break;
+        case 6:
             // Выходим из программы
             return;
         default:
