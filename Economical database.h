@@ -168,7 +168,6 @@ private: // функции в привате
 		cin >> liab;
 		prof = calculateNetProfit(rev, exp);
 		EcoDate.push_back(EconomicalDate(name, rev, exp, prof, ass, liab));
-		ResetDate(name, rev, exp, prof, ass, liab);
 	}
 
 	void EditEconomicalDate(vector<EconomicalDate>& EcoDate) {
@@ -216,7 +215,6 @@ private: // функции в привате
 		else {
 			cout << "\n No data for editing was found!" << endl;
 		}
-		ResetDate(EcoDate[cases].getCompanyName(), EcoDate[cases].getRevenue(), EcoDate[cases].getExpenses(), calculateNetProfit(EcoDate[cases].getRevenue(), EcoDate[cases].getExpenses()), EcoDate[cases].getAssets(), EcoDate[cases].getLiabilities());
 	}
 
 	// Я уже час переоформляю код((((((((
@@ -249,7 +247,6 @@ private: // функции в привате
 			ass = generateAssets();
 			liab = generateLiabilities();
 			EcoDate.push_back(EconomicalDate(name, rev, exp, prof, ass, liab));
-			ResetDate(name, rev, exp, prof, ass, liab);
 		}
 		if (n <= 10) {
 			cout << "\n The generation was successful! It was easy." << endl;
@@ -268,7 +265,7 @@ private: // функции в привате
 		}
 	}
 
-	void ResetDate(string name, double rev, double exp, double pro, double ass, double lia)// переписывание базы данных в файл
+	void ResetDate()// переписывание базы данных в файл
 	{
 		ifstream EcoDateList;
 		EcoDateList.open("d:Economical_Data.txt", ios::app);
@@ -278,26 +275,15 @@ private: // функции в привате
 		}
 		else
 		{
-			cout << "Eah! Good open ^w^ \n \n" << endl;
 			ClearDate();
-			SaveDate(name, rev, exp, pro, ass, lia);
+			for (int i = 0; i < EcoDate.size(); i++) {
+			SaveDate(EcoDate[i].getCompanyName(), EcoDate[i].getRevenue(), EcoDate[i].getExpenses(), EcoDate[i].getProfit(), calculateNetProfit(EcoDate[i].getRevenue(), EcoDate[i].getExpenses()), EcoDate[i].getLiabilities());
+			}
 		}
 	}
 
 	void SaveDate(string name, double rev, double exp, double pro, double ass, double lia)// записывает в базу данных
 	{
-		/*ifstream EcoDateList("d:Economical_Data.txt", ios::app);
-		if (EcoDateList.is_open()) 
-		{
-			EcoDateList << name << endl;
-			EcoDateList << rev << endl;
-			EcoDateList << exp << endl;
-			EcoDateList << calculateNetProfit(rev, exp) << endl;
-			EcoDateList << ass << endl;
-			EcoDateList << lia << "\n" << endl;
-			EcoDateList.close();
-			cout << "Data saved." << endl;
-		}*/
 		string filename = "d:Economical_Data.txt";
 		ofstream EcoDateList(filename, ios::app);
 		if (EcoDateList.is_open())
@@ -309,7 +295,6 @@ private: // функции в привате
 			EcoDateList << ass << endl;
 			EcoDateList << lia << "\n" << endl;
 			EcoDateList.close();
-			cout << "Data saved." << endl;
 		}
 		else {
 			cout << "File opening error." << endl;
@@ -318,12 +303,16 @@ private: // функции в привате
 
 	void ClearDate()// удаляет базу данных
 	{
-		fstream clear_file("Economical_Data.txt", ios::out);
+		ofstream ofs;
+		ofs.open("d:Economical_Data.txt", std::ofstream::out | std::ofstream::trunc);
+		ofs.close();
+		fstream clear_file("d:Economical_Data.txt", ios::out);
 		clear_file.close();
 	}
 
 public:
 	void EcoMenu() {
+		ClearDate();
 		int cases = 0;
 		bool EcoCompleted = false;
 		while (cases != 6) {
@@ -343,15 +332,19 @@ public:
 				break;
 			case 2:
 				FullGenerate(EcoDate);
+				ResetDate();
 				break;
 			case 3:
 				EnterEconomicalDate(EcoDate);
+				ResetDate();
 				break;
 			case 4:
 				EditEconomicalDate(EcoDate);
+				ResetDate();
 				break;
 			case 5:
 				DeleteEconomicalDate(EcoDate);
+				ResetDate();
 				break;
 			case 6:
 				cout << "Goodbye!" << endl;
