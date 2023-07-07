@@ -3,17 +3,16 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
 // Класс "данные организаций"
 class Organizations_database {
 private:
-    string A_NAME; // Название организации
-    string A_EMAIL; // E-mail организации
-    int A_ID; // ID организации
-    string A_NUMBER; // Телефон организации
 
 public:
+    string A_NAME, A_EMAIL, A_NUMBER;
+    int A_ID;
     // Конструктор по умолчанию
     Organizations_database() {
         this->A_NAME = "";
@@ -40,7 +39,7 @@ public:
 
     // Деструктор
     ~Organizations_database() { }
-    
+
     // Методы set
     void setA_NAME(string name) {
         this->A_NAME = name;
@@ -75,10 +74,10 @@ public:
     }
 
     void show() {
-        cout << " Organization's name: " << this->A_NAME << endl;
-        cout << " Organization's e-mail: " << this->A_EMAIL << endl;
-        cout << " Organization's id: " << this->A_ID << endl;
-        cout << " Telephon number: " << this->A_NUMBER << endl;
+        cout << "Organization's name: " << this->A_NAME << endl;
+        cout << "Organization's e-mail: " << this->A_EMAIL << endl;
+        cout << "Organization's id: " << this->A_ID << endl;
+        cout << "Telephon number: " << this->A_NUMBER << endl;
     }
 };
 
@@ -174,62 +173,81 @@ void editOrganizations_database(vector<Organizations_database>& Organizathions) 
     }
 }
 
+void GenerateOrganizathion(vector<Organizations_database>& Organizathions) {
+    vector<Organizations_database> Organizathions1;
+    const string Names[10] = { "Rostec", "Yahoo", "Yandex", "Google", "OOO Chebyrek", "000 Company", "Pizza time", "Coffe time", "Tea time", "OOO Farmers" };
+    const string Emails[10] = { "Qwe@yandex.ru", "Org@mail.ru", "Company@rambler.ru", "Jojo@gmail.com", "serega@Microsoft.com", "OOO@gmail.ru", "Boss@mail.ru", "pochta@yandex.ru", "DontWrite@gmail.com", "BadCompany@mail.ru" };
+    const string numbers[10] = { "+7-(922)-555-1234", "+1-(231)-189-0643", "+5-(851)-755-7330", "+9-(326)-111-1114", "+6-(666)-666-6666", "+1-(261)-116-1616", "+2-(222)-622-2262", "+3-(456)-789-1234", "+5-(555)-555-5555", "+9-(876)-543-2100" };
+    int Selectid = rand() % 100000000 + 1;
+    int randIndex1 = rand() % 10;
+    int randIndex2 = rand() % 10;
+    int randIndex3 = rand() % 10;
+    string SelectName = Names[randIndex1];
+    string SelectEmail = Emails[randIndex2];
+    string SelectNumbers = numbers[randIndex3];
+    // Создаем две организации со свойствами
+    Organizations_database Organizations_database1(SelectName, SelectEmail, Selectid, SelectNumbers);
+    Organizathions.push_back(Organizations_database1);
+}
 // Основная функция программы
 void Organizathions() {
     srand(time(0));
-    vector<Organizations_database> Organizathions;
-    const string Names[5] = { "Rostec", "Yahoo", "Yandex", "Google", "OOO Chebyrek" };
-    const string Emails[5] = { "Qwe@yandex.ru", "Org@mail.ru", "Company@rambler.ru", "Jojo@gmail.com", "serega@Microsoft.com" };
-    const string numbers[5] = { "+7-(922)-555-1234", "+1-(231)-189-0643", "+5-(851)-755-7330", "+9-(326)-111-1114", "+6-(666)-666-6666" };
-    int Selectid = rand() % 100000000 + 1;
-    int randIndex = rand() % 5; 
-    string SelectName = Names[randIndex];
-    string SelectEmail = Emails[randIndex];
-    string SelectNumbers = numbers[randIndex];
-
-    // Создаем две организации со свойствами
-    Organizations_database Organizations_database1(SelectName, SelectEmail, Selectid, SelectNumbers);
-    int Selectid2 = rand() % 100000000 + 1;
-    int randIndex2 = rand() % 5;
-    while (randIndex2 == randIndex) {
-        int randIndex2 = rand() % 5;
-    }
-    string SelectName2 = Names[randIndex2];
-    string SelectEmail2 = Emails[randIndex2];
-    string SelectNumbers2 = numbers[randIndex2];
-
-    Organizations_database Organizations_database2(SelectName2, SelectEmail2, Selectid2, SelectNumbers2);
-    Organizathions.push_back(Organizations_database1);
-    Organizathions.push_back(Organizations_database2);
+    vector<Organizations_database> Organizathions1;
     int choice;
     while (true) {
         cout << endl << "1. Display information about all data of organizations" << endl;
         cout << "\n2. Add an organization" << endl;
         cout << "\n3. Delete an organization" << endl;
         cout << "\n4. Change the parameters of the organization" << endl;
-        cout << "\n5. Exit" << endl;
+        cout << "\n5. Generate an organization" << endl;
+        cout << "\n6. Save" << endl;
+        cout << "\n7. Exit" << endl;
         cout << "\nSelect an action: ";
         cin >> choice;
         cout << "\n";
 
         switch (choice) {
         case 1:
-            for (int i = 0; i < Organizathions.size(); i++) {
+            for (int i = 0; i < Organizathions1.size(); i++) {
                 cout << "#" << i << ". ";
-                Organizathions[i].show();
+                Organizathions1[i].show();
                 cout << endl;
             }
             break;
         case 2:
-            addOrganizations_database(Organizathions);
+            addOrganizations_database(Organizathions1);
             break;
         case 3:
-            deleteOrganizations_database(Organizathions);
+            deleteOrganizations_database(Organizathions1);
             break;
         case 4:
-            editOrganizations_database(Organizathions);
+            editOrganizations_database(Organizathions1);
             break;
         case 5:
+            GenerateOrganizathion(Organizathions1);
+            break;
+        case 6:
+        {
+            ofstream outFile("organizathions.txt"); // Открываем файл для записи
+            // Проверяем, открылся ли файл успешно
+            if (!outFile.is_open()) {
+                cout << "Failed to open file!" << endl;
+                break;
+            }
+            // Записываем информацию об организациях в файл
+            for (int i = 0; i < Organizathions1.size(); i++) {
+                outFile << "#" << i << ". ";
+                outFile << "Organization's name: " << Organizathions1[i].A_NAME << endl;
+                outFile << "Organization's e-mail: " << Organizathions1[i].A_EMAIL << endl;
+                outFile << "Organization's id: " << Organizathions1[i].A_ID << endl;
+                outFile << "Telephon number: " << Organizathions1[i].A_NUMBER << endl;
+                outFile << endl;
+            }
+            outFile.close(); // Закрываем файл
+            cout << "Data successfully written to organizathions.txt" << endl;
+            break;
+        }
+        case 7:
             return;
         default:
             cout << "Wrong choice of action!" << endl;
