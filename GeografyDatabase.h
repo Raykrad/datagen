@@ -165,7 +165,7 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
             break;
         case 4:
             cout << "Enter the zip code: ";
-            cin >> newValue;
+            cin >> NewValueString;
             Geografies[index].setA_POCHTA(NewValueString);
             break;
         default:
@@ -187,15 +187,15 @@ void GenerateOrganization(vector<Geograf_organizations>& Geografies) {
      "United States", "United Kingdom", "Austria", "Norway", "Portugal", "Turkey", "Argentina", "Egypt", "Greece", "Israel",
      "Ireland", "Singapore", "Thailand", "New Zealand", "Chile", "Colombia", "Indonesia", "Malaysia", "Peru", "Philippines",
      "Saudi Arabia", "United Arab Emirates", "Kuwait", "Qatar", "Oman", "Bahrain", "Jordan", "Lebanon", "Morocco", "Tunisia",
-     "Algeria", "Angola", "Bulgaria", "Czech Republic", "Hungary", "Iceland", "Romania", "Slovakia", "South Africa", "Ukraine", 
-     "United States", "United Kingdom", "Spain", "Brazil", "Canada", "Australia", "India", "South Korea", "Mexico", "Netherlands", 
-     "Switzerland", "Norway", "Sweden", "Portugal", "Argentina", "Turkey", "Greece", "Egypt", "Israel", "Ireland", "Austria", "Czech Republic", 
-     "Hungary", "Indonesia", "Malaysia", "Thailand", "Vietnam", "Philippines", "Singapore", "New Zealand", "South Africa", "Kenya", "Nigeria", 
-     "Ghana", "Morocco", "Saudi Arabia", "United Arab Emirates", "Qatar", "Chile", "Colombia", "Peru", "Ecuador", "Venezuela", "Bolivia", 
-     "Cuba", "Puerto Rico", "Dominican Republic", "Costa Rica", "Panama", "Honduras", "Guatemala", "El Salvador", "Nicaragua", "Nepal", "Pakistan", 
-     "Bangladesh", "Sri Lanka", "Myanmar", "Mongolia", "Kazakhstan", "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Iran", "Iraq", "Syria", 
-     "Afghanistan", "Pakistan", "Lebanon", "Jordan", "Kuwait", "Oman", "Yemen", "Ethiopia", "Ghana", "Cameroon", "Ivory Coast", "Senegal", "Sudan", "Tanzania", 
-     "Uganda", "Zambia", "Zimbabwe", "Botswana", "Namibia", "Angola", "Mozambique", "Malawi", "Madagascar", "Mauritius", "Mali", "Niger", "Benin", "Togo", "Burkina Faso", 
+     "Algeria", "Angola", "Bulgaria", "Czech Republic", "Hungary", "Iceland", "Romania", "Slovakia", "South Africa", "Ukraine",
+     "United States", "United Kingdom", "Spain", "Brazil", "Canada", "Australia", "India", "South Korea", "Mexico", "Netherlands",
+     "Switzerland", "Norway", "Sweden", "Portugal", "Argentina", "Turkey", "Greece", "Egypt", "Israel", "Ireland", "Austria", "Czech Republic",
+     "Hungary", "Indonesia", "Malaysia", "Thailand", "Vietnam", "Philippines", "Singapore", "New Zealand", "South Africa", "Kenya", "Nigeria",
+     "Ghana", "Morocco", "Saudi Arabia", "United Arab Emirates", "Qatar", "Chile", "Colombia", "Peru", "Ecuador", "Venezuela", "Bolivia",
+     "Cuba", "Puerto Rico", "Dominican Republic", "Costa Rica", "Panama", "Honduras", "Guatemala", "El Salvador", "Nicaragua", "Nepal", "Pakistan",
+     "Bangladesh", "Sri Lanka", "Myanmar", "Mongolia", "Kazakhstan", "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Iran", "Iraq", "Syria",
+     "Afghanistan", "Pakistan", "Lebanon", "Jordan", "Kuwait", "Oman", "Yemen", "Ethiopia", "Ghana", "Cameroon", "Ivory Coast", "Senegal", "Sudan", "Tanzania",
+     "Uganda", "Zambia", "Zimbabwe", "Botswana", "Namibia", "Angola", "Mozambique", "Malawi", "Madagascar", "Mauritius", "Mali", "Niger", "Benin", "Togo", "Burkina Faso",
      "Central African Republic", "Sierra Leone", "Liberia", "Guinea", "Guinea-Bissau", "Gambia", "Equatorial Guinea" };
     const string cities[] = {
      "Moscow", "Berlin", "Paris", "Warsaw", "Minsk", "Helsinki", "Copenhagen", "Rome", "Beijing", "Tokyo",
@@ -230,7 +230,7 @@ void GenerateOrganization(vector<Geograf_organizations>& Geografies) {
      "Calle del Prado", "Kathmandu Durbar Square", "Islamabad Expressway", "Kazi Nazrul Islam Avenue", "Galle Road", "Strand Road", "Sukhbaatar Square", "Abay Avenue", "Mirzo Ulugbek Street", "Dushanbe City Boulevard",
      "Chui Avenue", "Archabil Avenue", "Valiasr Street", "Al Rasheed Street", "Mar Mousa Street", "Darul Aman Road", "Kabul-Jalalabad Road", "Imran Khan Avenue", "Hamdan bin Mohammed Street", "Sana'a University Street",
      "Churchill Avenue", "Independence Avenue", "Yaounde One Way Street", "Abidjan Boulevard", "Independence Avenue", "Bagamoyo Road", "Kampala Road", "Freedom Way", "Samora Machel Avenue", "Botswana A1 Highway",
-     "Independence Avenue", "Avenida 25 de Setembro", "Robert Mugabe Avenue", "Independence Avenue", "Antananarivo Avenue", "Sir William Newton Street", "Rue Mohammed V", "Avenue de la Republique", "Boulevard 13 Janvier", 
+     "Independence Avenue", "Avenida 25 de Setembro", "Robert Mugabe Avenue", "Independence Avenue", "Antananarivo Avenue", "Sir William Newton Street", "Rue Mohammed V", "Avenue de la Republique", "Boulevard 13 Janvier",
      "Avenue de l'independance", "Avenue de la Liberation", "Banjul Highway", "Avenida de Guinea Ecuatorial"
     };
     const string indexx[100] = {
