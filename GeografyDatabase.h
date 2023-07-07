@@ -4,25 +4,25 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
 // Класс "География организаций"
 class Geograf_organizations {
 private:
-    string A_STRANA, A_GOROD, A_ADRES; // СТРАНА, ГОРОД, АДРЕС!
-    int A_POCHTA; // ПОЧТА!
 
 public:
+    string A_STRANA, A_GOROD, A_ADRES, A_POCHTA; // СТРАНА, ГОРОД, АДРЕС, ПОЧТА!
     // Конструктор по умолчанию
     Geograf_organizations() {
         this->A_STRANA = "";
         this->A_GOROD = "";
         this->A_ADRES = "";
-        this->A_POCHTA = 0;
+        this->A_POCHTA = "";
     }
 
     // Параметрический конструктор
-    Geograf_organizations(string strana, string gorod, string adres, int pochta) {
+    Geograf_organizations(string strana, string gorod, string adres, string pochta) {
         this->A_STRANA = strana;
         this->A_GOROD = gorod;
         this->A_ADRES = adres;
@@ -53,7 +53,7 @@ public:
         this->A_ADRES = adres;
     }
 
-    void setA_POCHTA(int pochta) {
+    void setA_POCHTA(string pochta) {
         this->A_POCHTA = pochta;
     }
 
@@ -70,7 +70,7 @@ public:
         return this->A_ADRES;
     }
 
-    int getA_POCHTA() {
+    string getA_POCHTA() {
         return this->A_POCHTA;
     }
 
@@ -81,12 +81,12 @@ public:
         cout << "Organization's address: " << this->A_ADRES << endl;
         cout << "Postal code: " << this->A_POCHTA << endl;
     }
+
 };
 
 // Функция для добавления новой организации в массив
 void addGeograf_organizations(vector<Geograf_organizations>& Geografies) {
-    string strana, gorod, adres;
-    int pochta;
+    string strana, gorod, adres, pochta;
     // Получаем данные от пользователя
     cout << "Enter the organization's Country: ";
     cin.ignore();
@@ -96,7 +96,7 @@ void addGeograf_organizations(vector<Geograf_organizations>& Geografies) {
     cout << "Enter the organization's Address (Street_Number): ";
     getline(cin, adres);
     cout << "Enter the zip code: ";
-    cin >> pochta;
+    getline(cin, pochta);
     // Создаем новый объект Geograf_organizations на основе введенных данных и добавляем его в массив
     Geografies.push_back(Geograf_organizations(strana, gorod, adres, pochta));
     cout << "The organization has been added successfully!" << endl;
@@ -166,7 +166,7 @@ void editGeograf_organizations(vector<Geograf_organizations>& Geografies) {
         case 4:
             cout << "Enter the zip code: ";
             cin >> newValue;
-            Geografies[index].setA_POCHTA(newValue);
+            Geografies[index].setA_POCHTA(NewValueString);
             break;
         default:
             cout << "Incorrect parameter selection!" << endl;
@@ -233,35 +233,37 @@ void GenerateOrganization(vector<Geograf_organizations>& Geografies) {
      "Independence Avenue", "Avenida 25 de Setembro", "Robert Mugabe Avenue", "Independence Avenue", "Antananarivo Avenue", "Sir William Newton Street", "Rue Mohammed V", "Avenue de la Republique", "Boulevard 13 Janvier", 
      "Avenue de l'independance", "Avenue de la Liberation", "Banjul Highway", "Avenida de Guinea Ecuatorial"
     };
-    const int indexx[100] = {
-     666666, 123456, 126758, 838351, 146111, 198755, 375734, 5235123, 645375, 696722,
-     201932, 435262, 687468, 235970, 873656, 102983, 497566, 675840, 109573, 567813,
-     908721, 453897, 128797, 385627, 765932, 989281, 203588, 389074, 746090, 428507,
-     721082, 372624, 928384, 148215, 290386, 758312, 966243, 173405, 586931, 493857,
-     620379, 184750, 936580, 403971, 857398, 678120, 238647, 410930, 856328, 726374,
-     638470, 902734, 147908, 527117, 908293, 123499, 298139, 795237, 345212, 830498,
-     360134, 875939, 176434, 691092, 233983, 875910, 871263, 287520, 620389, 193857,
-     564290, 765912, 342163, 702832, 982726, 491087, 902384, 841263, 238758, 586731,
-     239687, 593871, 957130, 473819, 682759, 689273, 457610, 438900, 775832, 914627,
-     165398, 677234, 903586, 456871, 687439, 358340, 989214, 264739, 786983, 905832};
+    const string indexx[100] = {
+     "666666", "123456", "126758", "838351", "146111", "198755", "375734", "5235123", "645375", "696722",
+     "201932", "435262", "687468", "235970", "873656", "102983", "497566", "675840", "109573", "567813",
+     "908721", "453897", "128797", "385627", "765932", "989281", "203588", "389074", "746090", "428507",
+     "721082", "372624", "928384", "148215", "290386", "758312", "966243", "173405", "586931", "493857",
+     "620379", "184750", "936580", "403971", "857398", "678120", "238647", "410930", "856328", "726374",
+     "638470", "902734", "147908", "527117", "908293", "123499", "298139", "795237", "345212", "830498",
+     "360134", "875939", "176434", "691092", "233983", "875910", "871263", "287520", "620389", "193857",
+     "564290", "765912", "342163", "702832", "982726", "491087", "902384", "841263", "238758", "586731",
+     "239687", "593871", "957130", "473819", "682759", "689273", "457610", "438900", "775832", "914627",
+     "165398", "677234", "903586", "456871", "687439", "358340", "989214", "264739", "786983", "905832" };
     int randIndex = rand() % 100; // рандом индекс
     string SelectCountry = countryes[randIndex];
     string SelectCities = cities[randIndex];
     string SelectAdress = adress[randIndex];
-    int Selectindexx = indexx[randIndex];
+    string Selectindexx = indexx[randIndex];
     Geograf_organizations Geograf_organizations(SelectCountry, SelectCities, SelectAdress, Selectindexx);
     Geografies.push_back(Geograf_organizations);
     cout << "\nThe organization has been successfully generated!" << endl;
 }
 
 
-
-
-
 // Основная функция программы
 void runGeografy() {
     srand(time(0));
     vector<Geograf_organizations> Geografies1;
+    ofstream fileOut("file.txt");
+    if (!fileOut) {
+        std::cout << "Failed to open the file." << std::endl;
+        return;
+    }
     int choice;
     while (true) {
         // Выводим меню
@@ -270,7 +272,8 @@ void runGeografy() {
         cout << "\n3. Delete an organization" << endl;
         cout << "\n4. Change the geographical parameters of the organization" << endl;
         cout << "\n5. Generate one organization" << endl;
-        cout << "\n6. Exit" << endl;
+        cout << "\n6. Save data" << endl;
+        cout << "\n7. Exit" << endl;
         cout << "\nSelect an action: ";
         cin >> choice;
         cout << "\n";
@@ -301,6 +304,27 @@ void runGeografy() {
             GenerateOrganization(Geografies1);
             break;
         case 6:
+        {
+            ofstream outFile("geografy.txt"); // Открываем файл для записи
+            // Проверяем, открылся ли файл успешно
+            if (!outFile.is_open()) {
+                cout << "Failed to open file!" << endl;
+                break;
+            }
+            // Записываем информацию об организациях в файл
+            for (int i = 0; i < Geografies1.size(); i++) {
+                outFile << "#" << i << ". ";
+                outFile << "Organization's country: " << Geografies1[i].A_STRANA << endl;
+                outFile << "Organization's city: " << Geografies1[i].A_GOROD << endl;
+                outFile << "Organization's address: " << Geografies1[i].A_ADRES << endl;
+                outFile << "Postal code: " << Geografies1[i].A_POCHTA << endl;
+                outFile << endl;
+            }
+            outFile.close(); // Закрываем файл
+            cout << "Data successfully written to geografy.txt" << endl;
+            break;
+        }
+        case 7:
             // Выходим из программы
             return;
         default:
