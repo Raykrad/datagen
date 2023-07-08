@@ -225,6 +225,7 @@ void Organizathions() {
             break;
         case 5:
             GenerateOrganizathion(Organizathions1);
+            cout << "Successfully generated!" << endl;
             break;
         case 6:
         {
