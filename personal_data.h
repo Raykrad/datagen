@@ -134,6 +134,7 @@ public:
 void addPersonal_information(vector<Personal_information>& Personal_data) {
     string name, surname, strana, gorod, adres, email, mail, phone_number;
     //Получаем данные от пользователя нужные для добовление человека
+
     cout << "Enter the name: ";
     cin.ignore();
     getline(cin, name);
@@ -206,42 +207,50 @@ void editPersonal_information(vector<Personal_information>& Personal_data) {
         switch (property) {
         case 1:
             cout << "Enter the new name of the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_NAME(NewValueString);
             break;
         case 2:
             cout << "Enter the new surname of the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_SURNAME(NewValueString);
             break;
         case 3:
             cout << "Enter the new country of the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_STRANA(NewValueString);
             break;
         case 4:
             cout << "Enter new city og the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_GOROD(NewValueString);
             break;
         case 5:
             cout << "Enter the new address of the person (street_number): ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_ADRES(NewValueString);
             break;
         case 6:
             cout << "Enter the mail code of the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_MAIL(NewValueString);
             break;
         case 7:
             cout << "Enter the new email of the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_EMAIL(NewValueString);
             break;
         case 8:
             cout << "Enter the new phone number of the person: ";
-            cin >> NewValueString;
+            cin.ignore();
+            getline(cin,NewValueString);
             Personal_data[index].setA_PHONE_NUMBER(NewValueString);
             break;
 
