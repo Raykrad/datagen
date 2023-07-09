@@ -4,7 +4,6 @@
 #include "Organizathion.h"
 #include "GeografyDatabase.h"
 #include "Economical database.h"
-#include <Windows.h>
 using namespace std;
 
 int main() {
