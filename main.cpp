@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "authorization.h"
 #include "personal_data.h"
 #include "Organizathion.h"
@@ -15,7 +15,7 @@ int main() {
         cout << "\n<<Menu>>" << endl;
         cout << "\nPossible actions:" << endl;
         cout << "\n1. Personal data;\n \n2. Geographical data;\n \n3. Organizational data;\n \n4. Financial data;\n \n5. Exit." << endl;
-        cout << "Enter the desired action number: ";
+        cout << "\nEnter the desired action number: ";
         cin >> cases;
         switch (cases) 
         {
@@ -36,8 +36,8 @@ int main() {
         }
         case 4:
         {
-            EconomicalDate eco;
-            eco.EcoMenu();
+            EconomicalDate ara;
+            ara.EcoMenu();
             break;
         }
         case 5:

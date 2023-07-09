@@ -108,7 +108,7 @@ private:
 
         while (password.length() != 8)
         {
-            cout << "The password must be exactly eight characters long. Try again: ";
+            cout << "\nThe password must be exactly eight characters long. Try again: ";
             cin >> password;
         }
 
@@ -149,7 +149,7 @@ private:
                         file.close();
                         loginCompleted = true;
                         name = login;
-                        cout << "Welcome, " << name << "!" << endl;
+                        cout << "\nWelcome, " << name << "!" << endl;
                     }
                 }
             }

@@ -1,6 +1,8 @@
 ﻿  main.cpp
 D:\Games\Noita\main\authorization.h(17,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-D:\Games\Noita\main\Organizathion.h(179,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-D:\Games\Noita\main\GeografyDatabase.h(184,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-D:\Games\Noita\main\Economical database.h(303,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Games\Noita\main\personal_data.h(295,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Games\Noita\main\Organizathion.h(194,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Games\Noita\main\GeografyDatabase.h(128,26): warning C4101: newValue: неиспользованная локальная переменная
+D:\Games\Noita\main\GeografyDatabase.h(260,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Games\Noita\main\Economical database.h(359,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   main.vcxproj -> D:\Games\Noita\main\x64\Debug\main.exe
